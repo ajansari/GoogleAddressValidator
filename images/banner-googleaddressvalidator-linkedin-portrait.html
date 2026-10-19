@@ -1,0 +1,65 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Banner portrait</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1080px;height:1350px;background:#1f1f1f;color:#f3f3f0;font:400 16px/1.4 Inter,sans-serif;position:relative;overflow:hidden}
+.top{position:absolute;left:72px;right:72px;top:52px;display:flex;justify-content:space-between;align-items:center}
+.top img{height:52px}
+.eyebrow{font:700 17px Inter;letter-spacing:.14em;text-transform:uppercase;color:#a9a9a6;text-align:right;line-height:1.5}
+h1{position:absolute;left:72px;top:292px;font:900 112px/.96 Archivo,sans-serif;letter-spacing:-.03em;width:940px}
+.bar{position:absolute;left:72px;top:640px;width:420px;height:7px;background:linear-gradient(90deg,#1a5fd0 0 25%,#0f7f80 25% 50%,#7a4fc0 50% 75%,#c2187a 75% 100%)}
+.sub{position:absolute;left:72px;top:668px;width:936px;font:600 27px/1.4 Inter;color:#f3f3f0}
+.foot{position:absolute;left:72px;right:72px;bottom:56px;padding-top:22px;border-top:1px solid #4a4a48;display:flex;justify-content:space-between;font:700 17px Inter;letter-spacing:.1em;text-transform:uppercase;color:#a9a9a6}
+.lockup{position:absolute;left:72px;top:140px;display:flex;align-items:center;gap:26px}
+.lockup .ai{width:116px;height:116px;border-radius:26px;box-shadow:0 6px 22px rgba(66,133,244,.45)}
+.lockup .nm{font:900 58px/1 Archivo,sans-serif;letter-spacing:-.02em;color:#fff}
+.lockup .bc{display:flex;align-items:center;gap:12px;margin-top:12px;font:600 22px Inter;color:#a9a9a6}
+.lockup .bc img{width:38px;height:38px}
+
+.bcwin{position:absolute;left:72px;right:72px;top:776px;background:#fff;color:#242424;border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,.55);padding:22px 30px 22px;font-family:"Segoe UI",Inter,sans-serif}
+.bcwin .wt{display:flex;justify-content:space-between;align-items:center}
+.bcwin .wt .t{font:600 25px/1.2 "Segoe UI",Inter,sans-serif;color:#1f1f1f}
+.bcwin .wt .ic{font:400 22px Inter;color:#666;letter-spacing:.4em}
+.bcwin .msg{font:400 15.5px/1.4 Inter;color:#242424;margin:12px 0 14px}
+.bcwin .cols{display:flex;border-top:1px solid #e1e1e1}
+.bcwin .col{flex:1;padding:14px 26px 6px 0}
+.bcwin .col+.col{border-left:1px solid #c9c9c9;padding-left:26px;padding-right:0}
+.bcwin .ch{font:700 17px Inter;color:#1f1f1f;margin-bottom:8px}
+.bcwin .f{display:flex;align-items:baseline;font:400 18px/1.15 Inter;height:38px}
+.bcwin .f .k{color:#4d5a6a;white-space:nowrap}
+.bcwin .f .d{flex:1;border-bottom:2px dotted #c4c8cd;margin:0 8px;position:relative;top:-4px;min-width:14px}
+.bcwin .f .v{color:#1f1f1f}
+.bcwin .col+.col .f .k{display:none}.bcwin .col+.col .f .d{display:none}
+.bcwin .f .v.b{font-weight:700}
+.bcwin .src{display:flex;justify-content:space-between;border-top:1px solid #4d5a6a;margin-top:6px;padding-top:12px;font:400 16px Inter;color:#242424}
+.bcwin .btns{display:flex;justify-content:flex-end;gap:12px;margin-top:16px}
+.bcwin .btn{font:600 18px Inter;padding:11px 30px;border-radius:4px}
+.bcwin .ok{background:#4b7f8a;color:#fff}
+.bcwin .cancel{background:#fff;color:#242424;border:1px solid #8a8a8a}
+</style></head><body>
+<div class="top"><img src="onlybcfans-night.png" alt="OnlyBCFans"><div class="eyebrow">Business Central<br>Address Validator</div></div>
+<div class="lockup"><img class="ai" src="app-logo.png" alt="Google Address Validator app icon"><div><div class="nm">Google Address Validator</div><div class="bc"><img src="business-central-icon.png" alt="Microsoft Dynamics 365 Business Central"><span>Extension for Dynamics 365 Business Central</span></div></div></div>
+<h1>Fix the typo.<br>Ship the right<br>address.</h1>
+<div class="bar"></div>
+<div class="sub">One click on a card checks an address in 40 countries with Google Maps. Compare it side by side, then accept or keep yours.</div>
+<div class="bcwin">
+ <div class="wt"><div class="t">Suggested Address - Vendor V00020</div><div class="ic">&#x2922; &#x2715;</div></div>
+ <div class="msg">Changed values are shown in bold. Choose OK to accept the suggested address, or Cancel to keep the current address.</div>
+ <div class="cols">
+  <div class="col"><div class="ch">Current (BC)</div>
+   <div class="f"><span class="k">Address</span><span class="d"></span><span class="v">radhuspladsen 1</span></div>
+   <div class="f"><span class="k">City</span><span class="d"></span><span class="v">kobenhavn</span></div>
+   <div class="f"><span class="k">Post Code</span><span class="d"></span><span class="v">1550</span></div>
+   <div class="f"><span class="k">Country/Region Code</span><span class="d"></span><span class="v">DK</span></div></div>
+  <div class="col"><div class="ch">Suggested</div>
+   <div class="f"><span class="v b">Rådhuspladsen 1</span></div>
+   <div class="f"><span class="v b">København V</span></div>
+   <div class="f"><span class="v">1550</span></div>
+   <div class="f"><span class="v">DK</span></div></div>
+ </div>
+ <div class="src"><span>Suggestion from Google Maps</span><span></span></div>
+ <div class="btns"><span class="btn ok">OK</span><span class="btn cancel">Cancel</span></div>
+</div>
+<div class="foot"><span style="text-transform:none;letter-spacing:.04em">github.com/ajansari/GoogleAddressValidator</span><span>By AJ Ansari · Microsoft MVP</span></div>
+</body></html>

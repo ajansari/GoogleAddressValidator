@@ -1,0 +1,34 @@
+{
+  "id": "2d1d2fd8-0208-4096-a868-8489784df05a",
+  "name": "Google Address Validator",
+  "publisher": "OnlyBCFans",
+  "version": "1.3.0.3",
+  "brief": "Check and correct addresses with Google Maps from the card, in 40 countries.",
+  "description": "Validate addresses on 16 master-data cards with Google Maps Address Validation in 40 countries. Compare the current and suggested address side by side, then accept or keep yours.",
+  "privacyStatement": "",
+  "EULA": "https://github.com/ajansari/GoogleAddressValidator/blob/main/LICENSE",
+  "help": "https://ajansari.github.io/GoogleAddressValidator/",
+  "url": "https://github.com/ajansari/GoogleAddressValidator/",
+  "logo": "src/logo/AppLogo.png",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "28.0.0.0",
+  "application": "28.0.0.0",
+  "idRanges": [
+    {
+      "from": 92800,
+      "to": 92829
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "17.0",
+  "features": [
+    "NoImplicitWith",
+    "TranslationFile"
+  ],
+  "target": "Cloud"
+}

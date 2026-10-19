@@ -1,0 +1,31 @@
+# OCPF BC Agentic Development Framework — always ignored (Ops § Repository Hygiene)
+.claude/settings.local.json
+ocpfFramework/state/
+ocpfFramework/standardsGuide/
+ocpfFramework/opsGuide/
+ocpfFramework/runbookSteps/
+ocpfFramework/documentTemplates/
+ocpfFramework/patterns/
+ocpfFramework/scripts/
+.alpackages/
+*.g.xlf
+
+# OCPF BC Agentic Development Framework — framework files (intake answer: not tracked)
+ocpfFramework/
+CLAUDE.md
+.claude/agents/ocpf-light.md
+.claude/agents/ocpf-reasoning.md
+.claude/agents/ocpf-generator.md
+.claude/agents/ocpf-reviewer.md
+
+# macOS
+.DS_Store
+
+# Local working files (AJ Ansari, 2026-10-19): dashboard, progress tracker, editor and AI-tool folders
+ProjectDashboard.html
+ProjectDashboard-f1.html
+ProjectProgress.md
+.claude/
+.vscode/
+.mcp.json
+outputAppPackage/oldversions/

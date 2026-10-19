@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Banner</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1280px;height:640px;background:#1f1f1f;color:#f3f3f0;font:400 16px/1.4 Inter,sans-serif;position:relative;overflow:hidden}
+.top{position:absolute;left:64px;right:64px;top:40px;display:flex;justify-content:space-between;align-items:center}
+.top img{height:56px}
+.lockup{display:flex;align-items:center;gap:16px}
+.lockup .ai{width:64px;height:64px;border-radius:15px;box-shadow:0 4px 14px rgba(66,133,244,.45)}
+.lockup .nm{font:900 34px/1 Archivo,sans-serif;letter-spacing:-.02em;color:#fff}
+.lockup .bc{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 14px Inter;color:#a9a9a6}
+.lockup .bc img{width:22px;height:22px;height:22px}
+h1{position:absolute;left:64px;top:160px;font:900 72px/.98 Archivo,sans-serif;letter-spacing:-.025em;width:540px}
+.bar{position:absolute;left:64px;top:381px;width:340px;height:5px;background:linear-gradient(90deg,#1a5fd0 0 25%,#0f7f80 25% 50%,#7a4fc0 50% 75%,#c2187a 75% 100%)}
+.sub{position:absolute;left:64px;top:410px;width:470px;font:600 20px/1.45 Inter;color:#f3f3f0}
+.bcwin{position:absolute;left:640px;right:64px;top:150px;background:#fff;color:#242424;border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,.55);padding:18px 24px 18px;font-family:"Segoe UI",Inter,sans-serif}
+.bcwin .wt{display:flex;justify-content:space-between;align-items:center}
+.bcwin .wt .t{font:600 19px/1.2 "Segoe UI",Inter,sans-serif;color:#1f1f1f}
+.bcwin .wt .ic{font:400 17px Inter;color:#666;letter-spacing:.4em}
+.bcwin .msg{font:400 12.5px/1.4 Inter;color:#242424;margin:10px 0 10px}
+.bcwin .cols{display:flex;border-top:1px solid #e1e1e1}
+.bcwin .col{flex:1;padding:12px 18px 4px 0}
+.bcwin .col+.col{border-left:1px solid #c9c9c9;padding-left:20px;padding-right:0}
+.bcwin .ch{font:700 14px Inter;color:#1f1f1f;margin-bottom:6px}
+.bcwin .f{display:flex;align-items:baseline;font:400 14.5px/1.15 Inter;height:32px}
+.bcwin .f .k{color:#4d5a6a;white-space:nowrap}
+.bcwin .f .d{flex:1;border-bottom:2px dotted #c4c8cd;margin:0 6px;position:relative;top:-3px;min-width:10px}
+.bcwin .f .v{color:#1f1f1f}
+.bcwin .col+.col .f .k,.bcwin .col+.col .f .d{display:none}
+.bcwin .f .v.b{font-weight:700}
+.bcwin .src{border-top:1px solid #4d5a6a;margin-top:4px;padding-top:10px;font:400 13px Inter;color:#242424}
+.bcwin .btns{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
+.bcwin .btn{font:600 14.5px Inter;padding:8px 24px;border-radius:4px}
+.bcwin .ok{background:#4b7f8a;color:#fff}
+.bcwin .cancel{background:#fff;color:#242424;border:1px solid #8a8a8a}
+.foot{position:absolute;left:64px;right:64px;bottom:56px;padding-top:16px;border-top:1px solid #4a4a48;display:flex;justify-content:space-between;font:700 15px Inter;letter-spacing:.1em;text-transform:uppercase;color:#a9a9a6}
+</style></head><body>
+<div class="top"><img src="onlybcfans-night.png" alt="OnlyBCFans"><div class="lockup"><img class="ai" src="app-logo.png" alt="Google Address Validator app icon"><div><div class="nm">Google Address Validator</div><div class="bc"><img src="business-central-icon.png" alt="Business Central"><span>Extension for Dynamics 365 Business Central</span></div></div></div></div>
+<h1>Fix the typo. Ship the right address.</h1>
+<div class="bar"></div>
+<div class="sub">One click on a card checks an address in 40 countries with Google Maps. Compare it side by side, then accept or keep yours.</div>
+<div class="bcwin">
+ <div class="wt"><div class="t">Suggested Address - Vendor V00020</div><div class="ic">&#x2922; &#x2715;</div></div>
+ <div class="msg">Changed values are shown in bold. Choose OK to accept the suggested address, or Cancel to keep the current address.</div>
+ <div class="cols">
+  <div class="col"><div class="ch">Current (BC)</div>
+   <div class="f"><span class="k">Address</span><span class="d"></span><span class="v">radhuspladsen 1</span></div>
+   <div class="f"><span class="k">City</span><span class="d"></span><span class="v">kobenhavn</span></div>
+   <div class="f"><span class="k">Post Code</span><span class="d"></span><span class="v">1550</span></div>
+   <div class="f"><span class="k">Country/Region Code</span><span class="d"></span><span class="v">DK</span></div></div>
+  <div class="col"><div class="ch">Suggested</div>
+   <div class="f"><span class="v b">Rådhuspladsen 1</span></div>
+   <div class="f"><span class="v b">København V</span></div>
+   <div class="f"><span class="v">1550</span></div>
+   <div class="f"><span class="v">DK</span></div></div>
+ </div>
+ <div class="src">Suggestion from Google Maps</div>
+ <div class="btns"><span class="btn ok">OK</span><span class="btn cancel">Cancel</span></div>
+</div>
+<div class="foot"><span style="text-transform:none;letter-spacing:.04em">github.com/ajansari/GoogleAddressValidator</span><span>Created by AJ Ansari · Microsoft MVP</span></div>
+</body></html>

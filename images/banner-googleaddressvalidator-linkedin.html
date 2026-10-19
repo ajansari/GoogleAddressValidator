@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Banner</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:627px;background:#1f1f1f;color:#f3f3f0;font:400 16px/1.4 Inter,sans-serif;position:relative;overflow:hidden}
+.top{position:absolute;left:56px;right:56px;top:50px;display:flex;justify-content:space-between;align-items:center}
+.top img{height:52px}
+.eyebrow{font:700 15px Inter;letter-spacing:.14em;text-transform:uppercase;color:#a9a9a6}
+h1{position:absolute;left:56px;top:158px;font:900 66px/.98 Archivo,sans-serif;letter-spacing:-.025em;width:500px}
+.bar{position:absolute;left:56px;top:360px;width:340px;height:5px;background:linear-gradient(90deg,#1a5fd0 0 25%,#0f7f80 25% 50%,#7a4fc0 50% 75%,#c2187a 75% 100%)}
+.sub{position:absolute;left:56px;top:384px;width:455px;font:600 19px/1.45 Inter;color:#f3f3f0}
+.panel{position:absolute;left:600px;right:56px;top:160px}
+.ptitle{font:700 14px Inter;letter-spacing:.14em;text-transform:uppercase;color:#a9a9a6;padding-bottom:10px;border-bottom:1px solid #4a4a48}
+.cols{display:flex;border-bottom:1px solid #4a4a48}
+.col{flex:1;padding:14px 0 14px}
+.col+.col{border-left:1px solid #4a4a48;padding-left:22px}
+.h{font:700 14px Inter;letter-spacing:.14em;text-transform:uppercase;color:#a9a9a6;margin-bottom:12px}
+.l{font:700 11px Inter;letter-spacing:.14em;text-transform:uppercase;color:#a9a9a6;margin-top:10px}
+.v{font:500 20px/1.25 Inter;color:#e8e8e4}
+.v b{font-weight:700;background:#0f7f80;color:#fff;padding:0 5px;border-radius:3px;margin-left:-5px}
+.steps{display:flex;margin-top:16px;gap:0}
+.steps div{flex:1}
+.steps .l{margin:0 0 3px}
+.steps .t{font:600 14px Inter;color:#f3f3f0}
+.foot{position:absolute;left:56px;right:56px;bottom:30px;padding-top:16px;border-top:1px solid #4a4a48;display:flex;justify-content:space-between;font:700 15px Inter;letter-spacing:.1em;text-transform:uppercase;color:#a9a9a6}
+</style></head><body>
+<div class="top"><img src="onlybcfans-night.png" alt="OnlyBCFans"><div class="eyebrow">Business Central · Address Validator</div></div>
+<h1>Fix the typo. Ship the right address.</h1>
+<div class="bar"></div>
+<div class="sub">One click on a card checks an address in 40 countries with Google Maps. Compare it side by side, then accept or keep yours.</div>
+<div class="panel">
+ <div class="ptitle">Validate address · Vendor card</div>
+ <div class="cols">
+  <div class="col"><div class="h">Current (BC)</div>
+   <div class="l">Address</div><div class="v">radhuspladsen 1</div>
+   <div class="l">City</div><div class="v">kobenhavn</div>
+   <div class="l">Post code</div><div class="v">1550</div>
+   <div class="l">Country</div><div class="v">DK</div></div>
+  <div class="col"><div class="h">Suggested</div>
+   <div class="l">Address</div><div class="v"><b>Rådhuspladsen 1</b></div>
+   <div class="l">City</div><div class="v"><b>København V</b></div>
+   <div class="l">Post code</div><div class="v">1550</div>
+   <div class="l">Country</div><div class="v">DK</div></div>
+ </div>
+ <div class="steps">
+  <div><div class="l">Check</div><div class="t">Google Maps validation</div></div>
+  <div><div class="l">Compare</div><div class="t">Changed values in bold</div></div>
+  <div><div class="l">Decide</div><div class="t">Accept or keep yours</div></div>
+ </div>
+</div>
+<div class="foot"><span style="text-transform:none;letter-spacing:.04em">github.com/ajansari/GoogleAddressValidator</span><span>Created by AJ Ansari · Microsoft MVP</span></div>
+</body></html>

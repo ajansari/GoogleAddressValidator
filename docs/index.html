@@ -1,0 +1,2224 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Address Validator Help</title>
+<meta name="description" content="User guide, technical documentation and Google setup for the OnlyBCFans Google Address Validator extension for Microsoft Dynamics 365 Business Central.">
+<link rel="icon" href="assets/app-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --ink: #1f1f1f;
+  --ink-soft: #55575b;
+  --line: #deddd6;
+  --teal: #0f7f80;
+  --teal-bg: #d6efee;
+  --blue: #1a5fd0;
+  --purple: #7a4fc0;
+  --magenta: #c2187a;
+  --orange: #f5a53a;
+  --code-bg: #efeee8;
+  --radius: 10px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--teal); text-underline-offset: 2px; }
+a:hover { color: var(--blue); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+header.top { background: var(--surface); border-bottom: 1px solid var(--line); }
+.brandbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0 18px; flex-wrap: wrap; }
+.brandbar img.obcf { height: 38px; width: auto; display: block; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+.hero { display: flex; align-items: center; gap: 28px; padding: 18px 0 30px; flex-wrap: wrap; }
+.hero img.app { width: 96px; height: 96px; border-radius: 20px; box-shadow: 0 4px 16px rgba(26,95,208,.25); flex: none; }
+.hero h1 { font: 900 clamp(34px, 6vw, 58px)/1.02 Archivo, Inter, sans-serif; letter-spacing: -.02em; margin: 0 0 10px; }
+.hero p { margin: 0; max-width: 640px; color: var(--ink-soft); font-weight: 500; font-size: 17px; }
+.bar { height: 5px; width: 340px; max-width: 100%; margin: 14px 0 16px; background: linear-gradient(90deg, var(--blue) 0 25%, var(--teal) 25% 50%, var(--purple) 50% 75%, var(--magenta) 75% 100%); }
+.hl { background: var(--teal); color: #fff; padding: 0 .3em; border-radius: 3px; font-weight: 700; }
+
+nav.tabs { position: sticky; top: 0; z-index: 10; background: rgba(246,245,241,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+nav.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; }
+.tab { appearance: none; border: 0; background: none; font: 700 13px/1 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); padding: 18px 16px 16px; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--teal); }
+.tab:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+
+main { padding: 34px 0 60px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 34px clamp(18px, 4vw, 48px) 40px; }
+.panel[hidden] { display: none; }
+.panel > h1 { font: 900 34px/1.1 Archivo, Inter, sans-serif; letter-spacing: -.01em; margin: 0 0 6px; }
+.panel > h1::after { content: ""; display: block; height: 4px; width: 120px; margin-top: 12px; background: linear-gradient(90deg, var(--blue) 0 25%, var(--teal) 25% 50%, var(--purple) 50% 75%, var(--magenta) 75% 100%); }
+h2 { font: 800 25px/1.2 Archivo, Inter, sans-serif; margin: 2.2em 0 .5em; padding-top: 1.2em; border-top: 1px solid var(--line); }
+h2:first-of-type { border-top: 0; }
+.panel > h1 + h2 { margin-top: 1em; padding-top: 0; }
+h3 { font-size: 18px; margin: 1.8em 0 .4em; }
+h4 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+p, li { max-width: 78ch; }
+ul, ol { padding-left: 1.4em; }
+li { margin: .25em 0; }
+code { font: 500 .88em "JetBrains Mono", ui-monospace, Menlo, monospace; background: var(--code-bg); padding: .12em .4em; border-radius: 4px; }
+pre { background: #1f1f1f; color: #f3f3f0; padding: 16px 18px; border-radius: var(--radius); overflow-x: auto; line-height: 1.5; }
+pre code { background: none; padding: 0; color: inherit; }
+pre.mermaid { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-align: center; padding: 18px; }
+pre.mermaid svg { max-width: none; height: auto; }
+blockquote { margin: 1.2em 0; padding: 12px 18px; background: var(--teal-bg); border-left: 4px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; }
+blockquote p { margin: .3em 0; }
+.table-wrap { overflow-x: auto; margin: 1.2em 0; border: 1px solid var(--line); border-radius: var(--radius); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th { text-align: left; background: #efeee8; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+th, td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+input[type=checkbox] { accent-color: var(--teal); margin-right: .4em; }
+
+footer { border-top: 1px solid var(--line); background: var(--surface); }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 22px 16px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+footer a { color: inherit; }
+
+@media (max-width: 600px) {
+  .hero { gap: 18px; }
+  .hero img.app { width: 72px; height: 72px; border-radius: 16px; }
+  .brandbar .eyebrow { display: none; }
+}
+@media print {
+  nav.tabs, footer { display: none; }
+  .panel[hidden] { display: block; }
+  body { background: #fff; }
+}
+.gh { display: inline-flex; align-items: center; gap: 8px; font: 700 13px Inter, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; background: var(--surface); }
+.gh:hover { border-color: var(--ink); color: var(--ink); }
+.cta { margin-top: 16px !important; }
+.btn { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 8px; }
+.btn:hover { background: var(--teal); color: #fff; }
+.bannerwrap { padding-top: 6px; padding-bottom: 26px; background: var(--surface); max-width: none; border-bottom: 1px solid var(--line); }
+.bannerwrap a { display: block; max-width: 1048px; margin: 0 auto; }
+img.banner { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+.panel img { display: block; max-width: min(100%, 900px); height: auto; margin: 14px 0 18px; border: 1px solid var(--line); border-radius: 8px; }
+.panel > h1 + h2 + img, .panel li img { margin-left: 0; }
+.btn.dl { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); font-size: 18px; padding: 14px 24px; }
+.btn.dl:hover { background: var(--ink); }
+.btn.dl .dlv { font-weight: 500; opacity: .85; font-size: 15px; }
+.dlnote { display: block; margin-top: 10px; font-size: 14px; color: var(--ink-soft); max-width: 560px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://onlybcfans.com" aria-label="OnlyBCFans"><img class="obcf" src="assets/onlybcfans-day.png" alt="OnlyBCFans"></a>
+      <a class="gh" href="https://github.com/ajansari/GoogleAddressValidator"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+    </div>
+    <div class="hero">
+      <img class="app" src="assets/app-logo.png" alt="Google Address Validator app icon">
+      <div>
+        <h1>Google Address Validator</h1>
+        <div class="bar"></div>
+        <p>Setup, configuration and use for the <span class="hl">Business Central</span> extension. Version 1.3.0.3.</p>
+        <p class="cta"><a class="btn dl" href="https://github.com/ajansari/GoogleAddressValidator/raw/main/outputAppPackage/Google_Address_Validator_1.3.0.3.app" download><svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Download the app <span class="dlv">v1.3.0.3 · .app</span></a><span class="dlnote">Install it in a sandbox first: see <a href="#user-guide">the guides</a> and the install steps in <a href="https://github.com/ajansari/GoogleAddressValidator/blob/main/docs/4-prove/SandboxInstall.md">SandboxInstall.md</a>.</span></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap bannerwrap"><a href="https://github.com/ajansari/GoogleAddressValidator"><img class="banner" src="assets/banner.png" alt="Google Address Validator for Business Central: fix the typo, ship the right address. One click on a card checks an address in 40 countries with Google Maps."></a></div>
+
+<nav class="tabs" aria-label="Help sections"><div class="wrap" role="tablist"><button class="tab" role="tab" data-tab="user-guide" aria-selected="false">User Guide</button><button class="tab" role="tab" data-tab="documentation" aria-selected="false">Documentation</button><button class="tab" role="tab" data-tab="google-setup" aria-selected="false">Google Setup</button></div></nav>
+
+<main><div class="wrap"><section class="panel" id="panel-user-guide" role="tabpanel" hidden><h1>User Guide</h1><blockquote>
+<p><strong>Version 1.3.0.3.</strong> Works on 16 cards (Customer plus 15 more master-data cards) in the 40 countries Google covers. Version 1.0.0.0 and 1.2.0.4 passed the manual release test in a sandbox.</p>
+</blockquote>
+<h2>1. What this extension does for you</h2>
+<p>Google Address Validator checks an address with Google Maps while you are on the card of the record that holds it. You see your address and Google&#39;s suggested version side by side, and you can accept the suggestion with one click or keep what you have. A read-only <strong>Address Validated</strong> field on the record tells you whether the current address has been confirmed or accepted, and every check that reaches Google is written to a log.</p>
+<p><strong>New in version 1.2:</strong> validation is no longer limited to the United States. It works in the 40 countries and regions Google covers (section 4.12), and a blank Country/Region Code is filled in from the country Google found.</p>
+<p><strong>New in version 1.1:</strong> this works on the Customer Card (as before) and on 15 more cards: Ship-to Address, Customer Bank Account, Vendor, Order Address, Remit Address, Vendor Bank Account, Company Information (the company address and the ship-to address), Location, Responsibility Center, Bank Account, Employee, Alternative Address, Contact, Contact Alternative Address and Resource. The lists are in section 3, and the changes are in sections 4.6 to 4.11. Nothing else about the customer changed except five small points, listed in section 4.10.</p>
+<h2>2. Before you start</h2>
+<ul>
+<li><strong>Permission set.</strong> To validate addresses you need <code>OBCFGAV GAV, USE</code> (&quot;Google Address Validator - Use&quot;). To set the extension up, enter the API key or change the setup you need <code>OBCFGAV GAV, ADMIN</code> (&quot;Google Address Validator Admin&quot;). Your Business Central administrator assigns these on the <strong>Users</strong> page.</li>
+<li><strong>To accept a suggested address</strong> you also need your normal permission to modify the table you are checking (customers on the Customer Card, vendors on the Vendor Card, and so on). Without it you can still run the check and see the suggestion, but you cannot accept it. The permission sets above do not include any of these; they come from your usual Business Central permissions. Where Business Central also updates a linked record (section 4.8), you need permission to modify that record too, or accepting ends in a logged error and nothing changes. Company Information normally needs an administrator.</li>
+<li><strong>Setup must be done once per company</strong>, by an administrator (section 4.1). Until then the check tells you that validation is not set up.</li>
+<li><strong>The API key is your company&#39;s own.</strong> It belongs to your company&#39;s Google Cloud project, which must have billing and the Address Validation API turned on. The extension does not supply a key.</li>
+<li><strong>Every check is a billable Google request.</strong> Google&#39;s free allowance covers low volume (see the FRD: Google currently includes 5,000 free requests a month, shared by all countries, and the expected volume here is well below that; the price after that is in section 4.12), but each check you run counts as one request on your company&#39;s Google account. Check one customer when you need to; do not run checks just to try things out on real data.</li>
+<li><strong>Check one customer at a time, by hand.</strong> There is no automatic or bulk validation, and the check is for interactive use only (not for scheduled jobs or integrations).</li>
+<li><strong>Addresses in 40 countries can be checked (from 1.2).</strong> The record&#39;s Country/Region Code must be one of the countries on the Supported Countries page (section 4.12) and that country must be switched on. What happens to a record with a blank Country/Region Code depends on the <strong>Blank Country Handling</strong> setting (section 4.12): by default Google works the country out from the address. A country Google does not cover, or one an administrator switched off, is refused before anything is sent. For Company Information the rule is applied to the address being checked: the company address uses Country/Region Code, the ship-to address uses Ship-to Country/Region Code.</li>
+</ul>
+<h2>3. Getting there</h2>
+<ul>
+<li><strong>Validating an address:</strong> open a customer (search for <strong>Customers</strong>, then open the <strong>Customer Card</strong>). The action is <strong>Validate Address</strong>, shown on the ribbon and also under <strong>Actions</strong>, then <strong>Functions</strong>. The other cards have the same action (the table below).</li>
+<li><strong>The Address Validated field:</strong> on the Customer Card, in the Address &amp; Contact FastTab, right after <strong>Post Code</strong>. On the other cards it is next to the address, as the table below says.</li>
+<li><strong>The log for one record:</strong> on the Customer Card, under <strong>Customer</strong>, choose <strong>Google Address Validation Log</strong>. The other cards have the same action in their own menu (the table below). The whole log is also found by searching for <strong>Google Address Validation Log</strong>, or just for <strong>Google</strong> or <strong>address validation</strong>.</li>
+<li><strong>Supported countries:</strong> search for <strong>Google Address Validation Supported Countries</strong>, or open the setup page and choose <strong>Supported Countries</strong> (section 4.12).</li>
+<li><strong>Setup (administrator):</strong> search for <strong>Assisted Setup</strong> and choose <strong>Set up Google address validation</strong>, or search for <strong>Google Address Validation Setup</strong> (searching for <strong>Google</strong> or <strong>address validation</strong> also finds the setup page, the guided setup and the log).</li>
+</ul>
+<h3>3.1 The cards that have Validate Address (version 1.1)</h3>
+<p>Every card below has a <strong>Validate Address</strong> action (on the ribbon and under <strong>Actions</strong>; where the card has a <strong>Functions</strong> group, it is in <strong>Functions</strong>), a read-only <strong>Address Validated</strong> field, and a <strong>Google Address Validation Log</strong> action. You open each card the usual way, from its list or from the record it belongs to; this version adds nothing to any list page.</p>
+<p><strong>Sales and customer</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Card</th>
+<th>Address Validated sits</th>
+<th>Log action is in the menu group</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer Card</td>
+<td>after Post Code</td>
+<td>Customer</td>
+</tr>
+<tr>
+<td>Ship-to Address</td>
+<td>after Country/Region Code</td>
+<td>Address</td>
+</tr>
+<tr>
+<td>Customer Bank Account Card</td>
+<td>after Post Code</td>
+<td>Navigation</td>
+</tr>
+</tbody></table></div>
+<p><strong>Purchasing and vendor</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Card</th>
+<th>Address Validated sits</th>
+<th>Log action is in the menu group</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vendor Card</td>
+<td>after Post Code</td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td>Order Address</td>
+<td>after Country/Region Code</td>
+<td>Address</td>
+</tr>
+<tr>
+<td>Remit Address</td>
+<td>after Country/Region Code</td>
+<td>Location</td>
+</tr>
+<tr>
+<td>Vendor Bank Account Card</td>
+<td>after Country/Region Code</td>
+<td>Navigation</td>
+</tr>
+</tbody></table></div>
+<p><strong>Company and organization</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Card</th>
+<th>Address Validated sits</th>
+<th>Log action is in the menu group</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Company Information (two actions, see 4.7)</td>
+<td><strong>Address Validated</strong> after Country/Region Code; <strong>Ship-to Address Validated</strong> after Ship-to Country/Region Code</td>
+<td>Navigation</td>
+</tr>
+<tr>
+<td>Location Card</td>
+<td>after Country/Region Code</td>
+<td>Location</td>
+</tr>
+<tr>
+<td>Responsibility Center Card</td>
+<td>after Country/Region Code</td>
+<td>Resp. Ctr.</td>
+</tr>
+<tr>
+<td>Bank Account Card</td>
+<td>after Country/Region Code</td>
+<td>Bank Acc.</td>
+</tr>
+</tbody></table></div>
+<p><strong>People</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Card</th>
+<th>Address Validated sits</th>
+<th>Log action is in the menu group</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Employee Card</td>
+<td>after Country/Region Code</td>
+<td>Employee</td>
+</tr>
+<tr>
+<td>Alternative Address (of an employee)</td>
+<td>after Country/Region Code</td>
+<td>Address</td>
+</tr>
+<tr>
+<td>Contact Card (companies and persons)</td>
+<td>at the end of the Address group</td>
+<td>Contact</td>
+</tr>
+<tr>
+<td>Contact Alternative Address Card</td>
+<td>after Country/Region Code</td>
+<td>Alt. Contact Address</td>
+</tr>
+<tr>
+<td>Resource Card (persons and machines)</td>
+<td>after Country/Region Code</td>
+<td>Resource</td>
+</tr>
+</tbody></table></div>
+<blockquote>
+<p><strong>Note:</strong> the menu-group names above come from the code and from Business Central&#39;s standard pages; the exact wording on your US-localized pages was not seen. If a name differs, look in the card&#39;s other menus. Where a card shows <strong>Address Validated</strong> in a place you did not expect, tell your administrator; the anchors were checked on the standard (W1) pages only.</p>
+</blockquote>
+<h2>4. Tasks</h2>
+<h3>4.1 Set up the extension for the first time (administrator)</h3>
+<ol>
+<li><p>Search for <strong>Assisted Setup</strong> and choose <strong>Set up Google address validation</strong> (its description reads &quot;Enter the Google Maps API key used to validate addresses.&quot;). The guided page is titled <strong>Set Up Google Address Validation</strong>.</p>
+</li>
+<li><p>On the <strong>Welcome</strong> step read the text and choose <strong>Next</strong>. It reminds you that billing and the Address Validation API must be enabled in your Google Cloud project, and that you turn the service on and test the connection on the Google Address Validation Setup page afterwards.</p>
+<p><img src="screenshots/wizard-1-welcome.png" alt="Set Up Google Address Validation wizard, Welcome step"></p>
+</li>
+<li><p>On the <strong>Google Maps API Key</strong> step enter the <strong>API Key</strong> from your Google Cloud project. The field is masked. <strong>Next</strong> stays unavailable until it is filled in. If a key is already saved (you run the wizard again), the field shows it masked and you can simply choose <strong>Next</strong> to keep it.</p>
+<p><img src="screenshots/wizard-2-api-key.png" alt="Wizard, Google Maps API Key step"></p>
+</li>
+<li><p>On the <strong>Countries</strong> step choose the <strong>Default Country/Region Code</strong> (for example <code>US</code>; leave it blank if your records belong to several countries) and <strong>Blank Country Handling</strong> (<strong>Let Google decide</strong> is the default). Nothing is filled in for you: the default country is blank until you choose one. A message tells you if the country is not covered by Google or is switched off.</p>
+<p><img src="screenshots/wizard-3-countries.png" alt="Wizard, Countries step with Default Country/Region Code and Blank Country Handling"></p>
+</li>
+<li><p>On the last step (<strong>That&#39;s it!</strong>) choose <strong>Finish</strong> to save the key and the country choices. The key is stored securely for this company and is not shown again.</p>
+<p><img src="screenshots/wizard-4-finish.png" alt="Wizard, last step: Choose Finish"></p>
+</li>
+<li><p>Search for <strong>Google Address Validation Setup</strong> and open it (the setup card). Check these fields:</p>
+<ul>
+<li><strong>Enabled</strong> – switch this <strong>on</strong>. It starts off, and nothing is sent to Google Maps while it is off.</li>
+<li><strong>Provider</strong> – shows <strong>Google Maps</strong>. It is set by the extension and cannot be changed.</li>
+<li><strong>Blank Country Handling</strong> – what happens to a record whose Country/Region Code is blank (from 1.2.0.3). <strong>Let Google decide</strong> (the default) works the country out from the address; <strong>Use default country</strong> treats every such record as an address in the Default Country/Region Code. Section 4.12 explains both; if you only check addresses in one country, read it before you start.</li>
+<li><strong>Default Country/Region Code</strong> – the country used for a record whose Country/Region Code is blank when Blank Country Handling is <strong>Use default country</strong> (blank until you choose one in the wizard or here). It does not limit validation to the United States (section 4.12). If you enter a country that is not on the Supported Countries page, is switched off, or has no ISO Code, a message tells you; the value is still saved.</li>
+<li><strong>Timeout (Seconds)</strong> – how long to wait for Google Maps to answer before the check fails (starts at 10).</li>
+<li><strong>API Key</strong> (under <strong>Google Maps</strong>) – shown masked. You can enter or replace the key here instead of using the wizard. It cannot be read back after you save it. Below it, a note advises: <em>Use an API key that is restricted to the Address Validation API, and set a daily quota and a budget alert in the Google Cloud console.</em></li>
+</ul>
+<p><img src="screenshots/setup-page.png" alt="Google Address Validation Setup page"></p>
+</li>
+<li><p>Choose <strong>Test Connection</strong>. The first time, Business Central asks you to agree to a privacy notice, &quot;Google Address Validation&quot;, because customer addresses are sent to Google. Choose to agree. When the key works, you see <em>The connection to Google Maps works. The API key was accepted.</em> Test Connection checks the key, the API and billing only; no address is checked and no customer data is sent.</p>
+<p><img src="screenshots/test-connection-ok.png" alt="The connection to Google Maps works"></p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> the privacy notice dialog&#39;s wording is supplied by Business Central itself and mentions &quot;Microsoft services&quot;; the extension cannot change it. Your administrator has the details in the Deployment guide.</p>
+</blockquote>
+<h3>4.2 Validate a customer&#39;s address</h3>
+<ol>
+<li><p>Open the <strong>Customer Card</strong> of a customer in a supported country (section 4.12).</p>
+</li>
+<li><p>Make sure <strong>Address</strong> and either a <strong>Post Code</strong> (ZIP / postal code) or a <strong>City</strong> are filled in. In the United States and Canada a city needs its <strong>State</strong> too, as the 2-letter code (for example <code>WA</code> or <code>ON</code>).</p>
+</li>
+<li><p>Choose <strong>Validate Address</strong>. Any unsaved changes on the card are saved first, so Google checks what you see.</p>
+<p><img src="screenshots/customer-card-address-validated.png" alt="Customer Card with the Validate Address action and the Address Validated field switched on after the check"></p>
+</li>
+<li><p>The first time you validate, Business Central may show the privacy notice for sending addresses to Google. If an administrator has already agreed, you are not asked again. If you do not agree, nothing is sent and nothing is logged.</p>
+</li>
+<li><p>Wait a moment while Google answers. What happens next depends on the answer:</p>
+<ul>
+<li><strong>The address is already right.</strong> A message says <em>The address is confirmed by Google Maps. No changes are needed.</em> Nothing on the customer is changed, except that <strong>Address Validated</strong> is switched on. Differences in upper or lower case, periods, commas or extra spaces alone do not count as a difference. If Google has a delivery warning, it is added to the message (<em>Note: …</em>).</li>
+<li><strong>Google suggests a different address.</strong> The <strong>Suggested Address</strong> window opens. Continue with 4.3.</li>
+<li><strong>Google cannot confirm the address to the building, or an error occurs.</strong> You see a message. Section 5 explains each one.<blockquote>
+<p><strong>Tip:</strong> the check is deliberately one customer at a time, on request. Each one is a billable Google request.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3>4.3 Read the Suggested Address window and accept or ignore</h3>
+<p><img src="screenshots/suggested-address-window.png" alt="Suggested Address window: current address, Google&#39;s suggestion, and delivery notes"></p>
+<ol>
+<li>The window opens with the line <em>Changed values are shown in bold. Choose OK to accept the suggested address, or Cancel to keep the current address.</em> It shows two columns: <strong>Current (BC)</strong>, which is what is on the customer now, and <strong>Suggested</strong>. The rows are Address, Address 2, City, State / Province and ZIP / Postal Code. Anything Google would change is shown in <strong>bold</strong>.</li>
+<li>Directly under the columns, the line <strong>Suggestion from Google Maps</strong> tells you where the suggestion came from.</li>
+<li>Under <strong>Delivery notes</strong> you may see a highlighted warning and notes:<ul>
+<li><em>The suite or apartment number is missing.</em></li>
+<li><em>The suite or apartment number could not be confirmed.</em></li>
+<li><em>USPS could not confirm this address as deliverable.</em></li>
+<li><em>Part of the address was replaced, for example the ZIP Code.</em></li>
+<li><em>Missing parts of the address were added.</em></li>
+<li><em>The spelling of part of the address was corrected.</em></li>
+<li><em>Some parts of the address could not be confirmed.</em></li>
+<li><em>USPS data reports that this address is vacant.</em></li>
+<li><em>This is a business address.</em></li>
+<li><em>This is a PO box.</em></li>
+<li>any other message Google returned.
+A warning does not stop you from accepting; use your judgment, or find out the missing detail from the customer first.</li>
+</ul>
+</li>
+<li>To <strong>accept</strong>, choose <strong>OK</strong>. The customer&#39;s Address, Address 2, City, State and ZIP Code are replaced with exactly what is shown as suggested (outside the US and Canada, a value Google does not return, such as a state, keeps what the record had), and <strong>Address Validated</strong> is switched on. If the customer&#39;s <strong>Country/Region Code</strong> is blank, it is filled in with the country Google found (section 4.12); a country that is already filled in is never changed. When this will happen, the window shows the line <em>The Country/Region will be set to (country).</em> Because the customer is updated through the normal save, Business Central also keeps the linked contact&#39;s address in step.</li>
+<li>To <strong>ignore</strong>, choose <strong>Cancel</strong> (or close the window). Nothing on the customer changes, and <strong>Address Validated</strong> stays as it was. The check is still logged, as Suggestion Ignored.</li>
+<li>Sometimes OK cannot accept the suggestion. A line titled <em>Reason you can&#39;t accept</em> then explains why, and OK behaves like Cancel:<ul>
+<li><em>You can&#39;t accept the suggested address because you don&#39;t have permission to change customers. Choose OK or Cancel to close without changes.</em></li>
+<li><em>You can&#39;t accept the suggested address because the suggested value for Address (or Address 2, City, State, ZIP Code) is longer than N characters. Choose OK or Cancel to close without changes.</em> Nothing is cut off; correct the address by hand if you want to.</li>
+<li>If someone changed the customer&#39;s address while the window was open, nothing is updated and you see <em>The customer&#39;s address was changed while the suggested address was open, so nothing was updated. Run Validate Address again.</em><blockquote>
+<p><strong>Note:</strong> accepting does not update open sales or service documents; they keep the address they were created with. The customer&#39;s <strong>Tax Area Code</strong> is also not re-evaluated after a new address is accepted, so check it yourself if tax depends on the address.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3>4.4 Understand the Address Validated field</h3>
+<ul>
+<li>It is <strong>No</strong> for every new customer, and for existing customers when the extension is installed. You cannot edit it by hand.</li>
+<li>It becomes <strong>Yes</strong> when a check ends with the address confirmed or the suggestion accepted. (For someone without permission to modify customers, a confirmed address does not set it.)</li>
+<li><strong>A blank country is filled in (from 1.1.0.12).</strong> When a check ends with the suggestion accepted, or with the address confirmed (for someone allowed to modify the record), and the record&#39;s <strong>Country/Region Code</strong> is blank, the extension fills it in with the Country/Region whose ISO Code matches the country Google found (for example <code>DE</code> for Germany), or, when Google names no country, with the country that was assumed for the check (the Default Country/Region Code under <strong>Use default country</strong>, or the United States or Canada when the address looked like one; section 4.12). This does not switch <strong>Address Validated</strong> back to <strong>No</strong>. A country that is already filled in is never changed, and <em>could not confirm</em> never fills it in. If no Country/Region matches, it stays blank. It uses the record&#39;s own address: on Company Information, the ship-to check fills in the Ship-to Country/Region Code. The same applies on every card in section 4.6. (Before 1.2 only the US code was filled in, and a record with another country was not checked at all.)</li>
+<li>It stays as it was when you ignore a suggestion, when you cannot accept one, and when an error happens.</li>
+<li>It goes back to <strong>No</strong> when Google cannot confirm the address to the building (for people allowed to modify customers), and when someone later edits the customer&#39;s Address, Address 2, City, State or ZIP Code. <strong>The country is part of the validated address:</strong> from version 1.1.0.4 any change of <strong>Country/Region Code</strong>, including from blank to the US code, sets the field back to <strong>No</strong>, even when Business Central keeps the street, city, state and ZIP Code as they were (which it does when <strong>Require Country/Region Code in Addresses</strong> is switched on in General Ledger Setup). On Company Information the company&#39;s <strong>Country/Region Code</strong> resets <strong>Address Validated</strong> and <strong>Ship-to Country/Region Code</strong> resets <strong>Ship-to Address Validated</strong> (section 4.10). Version 1.0.0.0 did not count the country.</li>
+<li>The same rules apply on every other card (section 4.6). For a linked record, such as a contact, the field can also change because Business Central copied the address from the record it is linked to (section 4.8).<blockquote>
+<p><strong>Note:</strong> changes made by an import or another integration that bypass the normal field checks may not reset the field.</p>
+</blockquote>
+</li>
+</ul>
+<h3>4.5 View the Google Address Validation Log</h3>
+<ol>
+<li>On the Customer Card choose <strong>Customer</strong>, then <strong>Google Address Validation Log</strong> to see that customer&#39;s checks, newest first. Or search for <strong>Google Address Validation Log</strong> (or just <strong>Google</strong>) for the whole log.</li>
+<li>Each line shows the <strong>Entry No.</strong>, the <strong>Source Table</strong> (the kind of record, for example Vendor), the <strong>Record No.</strong> (the number or key of the record that was checked: the customer, vendor or employee number; for a record with a two-part key, such as a ship-to address, both parts with a slash, for example <em>C00010 / MAIN</em>; it is blank for Company Information, which has no number; it never contains a name), the <strong>Address Type</strong> (Main, or Ship-to for the company&#39;s ship-to address), when it was checked (<strong>Checked At</strong>), who ran it (<strong>User ID</strong>), the <strong>Result</strong> (Confirmed, Suggestion Accepted, Suggestion Ignored, Not Found or Error), whether it was <strong>Accepted</strong>, the address that was sent (the <strong>Original</strong> columns), the suggested address (kept only for Confirmed and Suggestion Accepted), <strong>Delivery Point Confirmation</strong>, <strong>Validation Granularity</strong>, <strong>Next Action</strong>, <strong>Provider Message</strong>, <strong>HTTP Status</strong> (0 means no answer was received), <strong>Provider</strong> and <strong>Address Complete</strong>. Three columns are hidden to keep the list short and can be shown through <strong>Personalization</strong> (choose the gear icon, then <strong>Personalize</strong>, and add the column): <strong>Customer No.</strong> (filled only for checks of a customer&#39;s address, and kept for entries written by version 1.0.0.0; <strong>Record No.</strong> now carries the same number), <strong>Source</strong> (the table and the key as one text, for example <em>Vendor 10000</em> or <em>Ship-to Address C00010 MAIN</em>; it never contains a name) and <strong>Source Table No.</strong>.</li>
+<li>The log is read-only. Only administrators can delete entries, and normally this happens by itself through the Retention Policy once an administrator has switched it on. <strong>The log keeps the record&#39;s key and address until the Retention Policy deletes the row</strong>, also after the record was deleted or marked Privacy Blocked. If a record is renamed (its number or code changes), its entries stay with it; the <strong>Record No.</strong> and <strong>Source</strong> text keep the key they had when the check ran. <strong>Source</strong> is stored text, written in the language of the user who ran the check (English (United States) in this version); it is not translated again later.<ul>
+<li><strong>Who sees which entries (from 1.1.0.4).</strong> You see only the entries whose source table you may read yourself: a user who can read customers but not employees sees the customer entries and no Employee, Alternative Address or Resource entry, whether the log is opened from a card, by search, or with Open in Excel / analysis mode. Administrators (<code>OBCFGAV GAV, ADMIN</code>) can read the whole log.</li>
+</ul>
+</li>
+<li>On every card, including the Customer Card, the <strong>Google Address Validation Log</strong> action shows only the entries for that one record, newest first. On Company Information it shows the entries of both the company address and the ship-to address; the <strong>Address Type</strong> column tells them apart. Entries written by version 1.0.0.0 are kept: after the upgrade each one shows as a Customer entry, with Record No. the customer number and Address Type Main.<blockquote>
+<p><strong>Tip:</strong> the log is also where to look for Google&#39;s own text of an error, which the pop-up message does not always show.</p>
+</blockquote>
+</li>
+</ol>
+<h3>4.6 Validate an address on the other cards (version 1.1)</h3>
+<ol>
+<li>Open the card (section 3.1) and make sure the address is filled in as for a customer (section 4.2): <strong>Address</strong>, and either <strong>City</strong> and <strong>State</strong> or a <strong>Post Code</strong> (ZIP Code), with the 2-letter state.</li>
+<li>Choose <strong>Validate Address</strong>. Unsaved changes are saved first. Everything after that works exactly as in sections 4.2 and 4.3: the same privacy notice, the same <strong>Suggested Address</strong> window, the same messages, the same rule that nothing is changed until you choose <strong>OK</strong>.</li>
+<li>What is different from a customer:<ul>
+<li>The <strong>Address Validated</strong> field and the log belong to the card you are on.</li>
+<li>If you cannot accept, the reason line says <em>You can&#39;t accept the suggested address because you don&#39;t have permission to change &lt;records&gt; records.</em> (for example <em>Vendor records</em>).</li>
+<li>If someone edits the record while the window is open, the message is <em>The address was changed while the suggested address was open, so nothing was updated. Run Validate Address again.</em> (the customer message keeps its own wording).</li>
+<li>If the record is deleted while the window is open, you see <em>The &lt;table&gt; record no longer exists, so nothing was updated.</em></li>
+</ul>
+</li>
+<li>A record that Business Central does not support is refused with <em>Address validation is not available for this record.</em> Nothing is sent and nothing is logged. In normal use you cannot trigger this from a card.</li>
+<li>As for customers, the check is one record at a time and on request. There is no bulk or automatic validation, and no list-page action.</li>
+</ol>
+<h3>4.7 Company Information has two addresses</h3>
+<p>The Company Information card has two actions and two fields, because it holds two addresses.</p>
+<ol>
+<li><strong>Validate Address</strong> checks the company address (Address, Address 2, City, County/State, Post Code/ZIP, Country/Region Code) and sets <strong>Address Validated</strong>.</li>
+<li><strong>Validate Ship-to Address</strong> checks the Ship-to fields (Ship-to Address, Ship-to Address 2, Ship-to City, Ship-to County, Ship-to Post Code, Ship-to Country/Region Code) and sets <strong>Ship-to Address Validated</strong>.</li>
+<li>They are independent. Each has its own comparison window, its own write and its own log entry. Editing a company address field resets only <strong>Address Validated</strong>; editing a ship-to field resets only <strong>Ship-to Address Validated</strong>. Validating one never changes the other address.</li>
+<li>The <strong>Google Address Validation Log</strong> action on this card shows the entries of both addresses; the <strong>Address Type</strong> column says which one.</li>
+<li>Changing Company Information normally needs an administrator, so without that permission you can run the check but cannot accept.</li>
+</ol>
+<h3>4.8 What happens to linked records</h3>
+<p>Business Central keeps some records in step with each other. When you accept a suggestion, or when a check confirms or does not find an address, the <strong>Address Validated</strong> field of the linked record follows, so that the two records do not disagree. You do not have to validate the linked record separately.</p>
+<ul>
+<li><strong>Customer, Vendor and Bank Account and their Contact.</strong> Accepting a suggestion on a customer, vendor or bank account (the company&#39;s own, not the Customer or Vendor Bank Account) updates the linked contact&#39;s address, as Business Central already did, and the contact&#39;s <strong>Address Validated</strong> takes the same value. A check that ends in <em>confirmed</em> or <em>could not confirm</em> also sets or clears the contact&#39;s field. This extra step is Business Central&#39;s standard update of the linked contact, so the contact&#39;s <strong>Last Date Modified</strong> and, if the Change Log is on for contacts, its Change Log entries change. It is run only when the contact&#39;s indicator actually differs from the new one, so a repeated check that changes nothing leaves the contact alone. The same holds for a <strong>Vendor</strong>, a <strong>Bank Account</strong> and an <strong>Employee</strong> (whose linked <strong>Resource</strong> is updated). This extra step happens after the check is saved. If it fails, or you may not modify contacts, the contact is left as it was and the check still counts: you do not see an error.</li>
+<li><strong>Contact and what is linked to it.</strong> Accepting a suggestion on a contact (and a <em>confirmed</em> or <em>could not confirm</em> result on a contact) lets Business Central update the linked customer, vendor, bank account and employee. <strong>For a contact this update is part of the same save, so if it fails you see an error, the check is logged as Error and the contact is unchanged</strong> (unlike the customer, vendor, bank account and employee above, where a failure is silent). <em>This rule was confirmed by the product owner, AJ Ansari, on 2026-10-18: the update of the linked records is standard Business Central behaviour and is kept.</em> When <strong>Inherit Address Details</strong> is on in Marketing Setup, the persons of a company contact whose address was the company&#39;s also take the new address and the company&#39;s field; a person follows its company&#39;s field <strong>only when the company&#39;s address (country included) or field changed</strong>. A person who is linked to a company takes the company&#39;s address and field in the same way.</li>
+<li><strong>A person contact stays on its own.</strong> A person keeps its own <strong>Address Validated</strong> and can be validated on its own. Accepting on a person never changes the company contact.</li>
+<li><strong>Employee and Resource.</strong> Accepting on an employee that has a linked resource updates the resource&#39;s address and its field. A check that cannot find the employee&#39;s address clears the resource&#39;s field as well.</li>
+<li><strong>Editing a linked record.</strong> If someone edits the address on a contact, the linked customer&#39;s, vendor&#39;s, bank account&#39;s or employee&#39;s field is cleared too when Business Central copies the new address across.</li>
+<li><strong>No linked record:</strong> Ship-to Address, Customer Bank Account, Vendor Bank Account, Order Address, Remit Address, Company Information, Location, Responsibility Center, Alternative Address, Contact Alternative Address and Resource have no linked record that is updated.</li>
+<li><strong>No duplicate window.</strong> When you accept a suggestion on a company contact, Business Central&#39;s usual <em>possible duplicate contact</em> window is not shown. The address is simply saved. The duplicate check still runs the next time someone edits the contact.</li>
+</ul>
+<h3>4.9 Privacy Blocked records</h3>
+<p>A customer, vendor, contact, employee or resource whose <strong>Privacy Blocked</strong> is switched on is not validated. Choosing <strong>Validate Address</strong> shows <em>Address validation is not available for this record because it is blocked due to privacy.</em> Nothing is sent to Google and nothing is logged.
+The same applies to the records that belong to a blocked one: the ship-to addresses and bank accounts of a blocked customer, the order addresses, remit addresses and bank accounts of a blocked vendor, the alternative addresses of a blocked employee, and the alternative addresses of a blocked contact. Other cards have no such field and are not affected. This also applies to customers, which 1.0.0.0 did not do.</p>
+<h3>4.10 What did not change, and the small changes for customers</h3>
+<ul>
+<li><strong>Documents and transactions are untouched.</strong> There is no <strong>Validate Address</strong> on sales, purchase, transfer, service or any other document, on posted documents or on journals, and an accepted suggestion does not update an address that was copied onto a document earlier. Jobs, job tasks, service items, work centers, machine centers, unions and templates are not included either. There is no action on any list page.</li>
+<li><strong>Customers behave as in 1.0.0.0, with six exceptions:</strong><ol>
+<li>A customer with <strong>Privacy Blocked</strong> on is refused (section 4.9).</li>
+<li>If the customer is deleted while the suggestion window is open, you see <em>The Customer record no longer exists, so nothing was updated.</em></li>
+<li>A check that ends in <em>confirmed</em> or <em>could not confirm</em> also updates the linked contact&#39;s <strong>Address Validated</strong> (section 4.8).</li>
+<li>A change of <strong>Country/Region Code</strong> (also from blank to the US code) sets <strong>Address Validated</strong> back to <strong>No</strong>, whether or not Business Central clears City, State or ZIP Code.</li>
+<li>The <em>possible duplicate contact</em> window no longer interrupts an accept (section 4.8).</li>
+<li>A blank <strong>Country/Region Code</strong> is filled in when a check ends in an accepted suggestion or a confirmed address (section 4.4; in 1.2 with the country Google found, in 1.1 with the setup&#39;s US code). This one applies to every card, not only to customers.
+The 1.0.0.0 customer messages read as before, except the three that named the United States: the <em>US addresses only</em> message is gone, and the <em>incomplete address</em> and <em>state code</em> messages and the State / ZIP captions are now worded for any country (section 5).</li>
+</ol>
+</li>
+</ul>
+<h3>4.11 After upgrading from 1.0.0.0</h3>
+<ul>
+<li>Nothing has to be set up again. Your key, setup, log and the customers&#39; <strong>Address Validated</strong> values are kept.</li>
+<li>Each old log entry now shows as a Customer entry (section 4.5).</li>
+<li>From 1.1.0.10 the <strong>Record No.</strong> column of every old log entry is filled once, by an automatic upgrade step: from the customer number where there is one, otherwise from the number or key of the record that was checked. It stays blank when that record no longer exists, and for Company Information entries (which have no number).</li>
+<li>Each customer that was validated has its linked contact marked validated too, when the contact&#39;s address is the same as the customer&#39;s.</li>
+<li>Every record in the new tables starts at <strong>No</strong>. Nothing is validated automatically.</li>
+<li>A company created after the upgrade shows the Assisted Setup description <em>Enter the Google Maps API key used to validate addresses.</em> Companies that existed before keep the earlier wording (<em>...validate customer addresses.</em>).</li>
+</ul>
+<h3>4.12 Supported countries</h3>
+<p><img src="screenshots/supported-countries.png" alt="Google Address Validation Supported Countries page">
+Version 1.2 checks addresses in the 40 countries and regions that Google&#39;s Address Validation service covers, not only the United States. The list below was read from Google&#39;s coverage page on 2026-10-18: <a href="https://developers.google.com/maps/documentation/address-validation/coverage">https://developers.google.com/maps/documentation/address-validation/coverage</a>. Google can change it; the page is the authority.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Country</th>
+<th>Preview</th>
+<th>Residential data</th>
+<th>USPS data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AR</td>
+<td>Argentina</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>AT</td>
+<td>Austria</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>AU</td>
+<td>Australia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>BE</td>
+<td>Belgium</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>BG</td>
+<td>Bulgaria</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>BR</td>
+<td>Brazil</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CA</td>
+<td>Canada</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CH</td>
+<td>Switzerland</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CL</td>
+<td>Chile</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CO</td>
+<td>Colombia</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CZ</td>
+<td>Czechia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>DE</td>
+<td>Germany</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>DK</td>
+<td>Denmark</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>EE</td>
+<td>Estonia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>ES</td>
+<td>Spain</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>FI</td>
+<td>Finland</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>FR</td>
+<td>France</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>GB</td>
+<td>United Kingdom</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>HR</td>
+<td>Croatia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>HU</td>
+<td>Hungary</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>IE</td>
+<td>Ireland</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>India</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>IT</td>
+<td>Italy</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>JP</td>
+<td>Japan</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>Lithuania</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>LU</td>
+<td>Luxembourg</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>LV</td>
+<td>Latvia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>MX</td>
+<td>Mexico</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>MY</td>
+<td>Malaysia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>NL</td>
+<td>Netherlands</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>NO</td>
+<td>Norway</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>NZ</td>
+<td>New Zealand</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>PL</td>
+<td>Poland</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>PR</td>
+<td>Puerto Rico</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>Portugal</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SE</td>
+<td>Sweden</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SG</td>
+<td>Singapore</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SI</td>
+<td>Slovenia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SK</td>
+<td>Slovakia</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>US</td>
+<td>United States</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody></table></div>
+<p><strong>Preview</strong> means Google lists the country as not yet generally available, so results can change (India and Japan). <strong>Residential data</strong> means Google can tell residential from commercial addresses; it does not for Colombia, Italy and Singapore. <strong>USPS data</strong> means the answer also carries US Postal Service delivery data (the standardized address and the deliverability notes); only the United States and Puerto Rico have it.</p>
+<p><strong>Open the list.</strong> Search for <strong>Google Address Validation Supported Countries</strong> (Tell Me), or open <strong>Google Address Validation Setup</strong> and choose <strong>Supported Countries</strong>. The page shows the 40 rows. You cannot add or delete a row. The only field you can change is <strong>Enabled</strong>, and only if you have the administrator permission set; for everyone else the page is read-only. The page fills itself the first time it is opened if the table is empty.</p>
+<p><strong>What Enabled does.</strong> Every row starts <strong>on</strong>. A country that is switched off is refused before anything is sent to Google: the user sees <em>Address validation isn&#39;t turned on for (country). Ask your administrator to turn it on in Google Address Validation Supported Countries.</em> Nothing is logged.</p>
+<p><strong>Which country is checked.</strong> The record&#39;s own <strong>Country/Region Code</strong> decides. The extension turns it into Google&#39;s two-letter region code through the <strong>ISO Code</strong> of that country on the <strong>Countries/Regions</strong> page (a country coded <code>UK</code> with no ISO Code is sent as GB). If the code is blank, the <strong>Blank Country Handling</strong> setting on the setup page decides (from 1.2.0.3):</p>
+<ul>
+<li><strong>Let Google decide</strong> (the default for new and upgraded installations). The extension looks at the address. If the <strong>State</strong> is a US state or territory code (the 50 states, DC, PR, AA, AE or AP) and the <strong>ZIP Code</strong> has 5 or 9 digits, it is treated as a <strong>United States</strong> address, so you still get US Postal Service delivery data. If the <strong>Post Code</strong> looks like a Canadian postal code (A1A 1A1), it is treated as a <strong>Canadian</strong> address. Otherwise no country is sent and <strong>Google works out the country</strong> from the address, so a Danish address with no country is found in Denmark and the country is filled in when you accept it. Whatever Google finds must be a country on the list and switched on, or the check ends as Not Found. <strong>If a United States or Canada guess ends as Not Found, the check is sent once more without a country</strong> (an Italian address in the province of Milan, state MI with a 5-digit postal code, looks American at first). That second request is billed too, so a failed guess costs two requests instead of one; only the second answer is logged.</li>
+<li><strong>Use default country.</strong> Every record with a blank country is checked as an address in the <strong>Default Country/Region Code</strong> (blank until you choose one), whatever the address looks like. If the default is blank, no country is sent and nothing is guessed. Choose this in a company that only checks addresses in one country.</li>
+</ul>
+<p>A country that is not on the list is refused with <em>Google Maps can&#39;t validate addresses in (country).</em> A country with no ISO Code that cannot be read as a two-letter code is refused with a message that asks for its ISO Code on the Countries/Regions page.</p>
+<p><strong>What a record needs.</strong> For the United States and Puerto Rico: a street, and either a ZIP Code or a city and a 2-letter state (as before). For Canada: a street, and either a postal code (A1A 1A1) or a city and a 2-letter province. For every other country: a street, and a city or a postal code; no state is needed. If something is missing, the message <em>Enter a street address and either a ZIP / postal code or a city (in the US and Canada, a city needs its state or province too).</em> appears and nothing is sent.</p>
+<p><strong>Country fill-in.</strong> When the record&#39;s Country/Region Code is blank and you accept a suggestion (or a check confirms the address and you may modify the record), the code is filled in from the country Google found, for example <code>DE</code> for Germany or <code>DK</code> for Denmark. It looks up the Country/Region whose ISO Code matches. A country that is already filled in is never changed, and <em>could not confirm</em> never fills it in. The Suggested Address window shows the line <em>The Country/Region will be set to (country).</em> when that will happen. If no Country/Region matches, the field stays blank.</p>
+<p><strong>When Google finds a different country.</strong> If the record has a country and Google finds the address in another one, the check ends as Not Found with <em>Google Maps found this address in (country Google found), but the record says (record&#39;s country). Check the country and try again.</em> The record is not changed. Puerto Rico and the United States are treated as one for this comparison. If the record has no country and Google finds the address in a country that is switched off or not on the list, the check also ends as Not Found, with the two messages above, and the country stays blank.</p>
+<p><strong>Data protection.</strong> All 40 countries are switched on when the extension is installed and when it is upgraded to 1.2. That means addresses outside the United States, including employee and contact addresses, can be sent to Google when a user chooses Validate Address. Nothing is sent unless a user chooses it. Administrators who do not want some countries checked should switch them off on the Supported Countries page. Agree to the privacy notice only after deciding this.</p>
+<p><strong>Cost.</strong> Every country uses the same Google Address Validation Pro price: the first 5,000 requests a month are free, then it is about $17 per 1,000. The free allowance is shared by all countries and all users of the key. India has its own price line with 35,000 free requests a month. Check Google&#39;s current price list; these figures were read from the FRD and Google&#39;s documentation.</p>
+<p><strong>Limits of Let Google decide.</strong> (1) A United States address whose state is missing or spelled out, or whose ZIP Code is not 5 or 9 digits, is not recognized as American; no country is sent, so it gets <strong>no US Postal Service delivery data</strong>. In a company that checks only US addresses, choose <strong>Use default country</strong>. (2) When you install 1.2.0.3 or later over an earlier 1.2 build, the setting becomes <strong>Let Google decide</strong> for the existing setup, which changes how blank-country records were checked before (they used the Default Country/Region Code). There is no upgrade step; <strong>administrators should review Blank Country Handling</strong> after the upgrade. (3) The guess cannot tell a United States address from another country&#39;s address that uses a US state code and a 5-digit postal code; the repeat without a country in the check above is what rescues those, and filling in the country on the record is the sure way.</p>
+<blockquote>
+<p><strong>Note:</strong> Google&#39;s answers differ by country (for example whether the state comes back as a code or a name, and what Brazil, Mexico, India and Japan return). Try a few real addresses in each country you rely on before you depend on it.</p>
+</blockquote>
+<h2>5. Messages you may see</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Message</th>
+<th>What it means</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Address validation is not set up. Contact your administrator.</td>
+<td>The service is switched off, or the API key is missing. Nothing was sent.</td>
+<td>Tell your administrator (section 4.1).</td>
+</tr>
+<tr>
+<td>Google Maps can&#39;t validate addresses in <em>(country)</em>.</td>
+<td>Google does not cover the record&#39;s country (for example Russia), so nothing was sent or logged. (Replaces the earlier <em>US addresses only</em> message.)</td>
+<td>Nothing to do. If the country code is wrong, correct it.</td>
+</tr>
+<tr>
+<td>Address validation isn&#39;t turned on for <em>(country)</em>. Ask your administrator to turn it on in Google Address Validation Supported Countries.</td>
+<td>The country is covered but an administrator switched it off. Nothing was sent or logged.</td>
+<td>Ask your administrator (section 4.12).</td>
+</tr>
+<tr>
+<td>Google Maps can&#39;t tell which country <em>(country)</em> is. Fill in the ISO Code of this country or region on the Countries/Regions page and try again.</td>
+<td>The record&#39;s country has no ISO Code and is not a two-letter code that can be used. Nothing was sent.</td>
+<td>Administrator: fill in the ISO Code on the Countries/Regions page.</td>
+</tr>
+<tr>
+<td>Enter a street address and either a ZIP / postal code or a city (in the US and Canada, a city needs its state or province too).</td>
+<td>There is no street, or no postal code or city (in the US and Canada: no usable ZIP or postal code and no city with its state or province).</td>
+<td>Fill them in, save, and run the check again.</td>
+</tr>
+<tr>
+<td>Enter the 2-letter state or province code in the State field.</td>
+<td>In the US, Puerto Rico or Canada the State is not a 2-letter code such as <code>WA</code> or <code>ON</code>.</td>
+<td>Use the 2-letter code.</td>
+</tr>
+<tr>
+<td>Google Maps found this address in <em>(country found)</em>, but the record says <em>(record&#39;s country)</em>. Check the country and try again.</td>
+<td>Google found the address in a different country than the record&#39;s. Logged as Not Found. The record is not changed.</td>
+<td>Check the country and the address.</td>
+</tr>
+<tr>
+<td>The privacy notice for sending addresses to Google Maps has not been agreed to, so nothing was sent.</td>
+<td>You (or your administrator) did not agree to the privacy notice.</td>
+<td>Run the action again and agree, or ask your administrator.</td>
+</tr>
+<tr>
+<td>The customer was not found.</td>
+<td>The customer could not be read when the check started.</td>
+<td>Reopen the customer and try again.</td>
+</tr>
+<tr>
+<td>The record was not found.</td>
+<td>The record on another card could not be read when the check started.</td>
+<td>Reopen the card and try again.</td>
+</tr>
+<tr>
+<td>Address validation is not available for this record.</td>
+<td>The record is not one the extension can validate. Nothing was sent or logged.</td>
+<td>Nothing to do; report it if you saw it on a card from section 3.1.</td>
+</tr>
+<tr>
+<td>Address validation is not available for this record because it is blocked due to privacy.</td>
+<td><strong>Privacy Blocked</strong> is on for the record or for the customer, vendor, employee or contact it belongs to (4.9). Nothing was sent or logged.</td>
+<td>Nothing to do, unless the block should not be there.</td>
+</tr>
+<tr>
+<td>The address was changed while the suggested address was open, so nothing was updated. Run Validate Address again.</td>
+<td>Same as the customer message below, shown on every other card.</td>
+<td>Run the check again.</td>
+</tr>
+<tr>
+<td>You can&#39;t accept the suggested address because you don&#39;t have permission to change <em>(table)</em> records. Choose OK or Cancel to close without changes.</td>
+<td>You may run the check but may not modify this kind of record. Logged as Suggestion Ignored.</td>
+<td>Ask for modify permission on that table.</td>
+</tr>
+<tr>
+<td>The <em>(table)</em> record no longer exists, so nothing was updated.</td>
+<td>The record was deleted while the suggestion window was open. Logged as Error.</td>
+<td>Nothing to do.</td>
+</tr>
+<tr>
+<td>Google Maps couldn&#39;t confirm this address. <em>(Please check the …)</em></td>
+<td>Google answered but could not confirm the address to the building, then try again. Logged as Not Found. <strong>Address Validated</strong> goes back to No if you may modify customers.</td>
+<td>Check the spelling and add the missing detail (suite number, ZIP Code), then try again.</td>
+</tr>
+<tr>
+<td>The address is confirmed by Google Maps. No changes are needed. <em>(Note: …)</em></td>
+<td>The address matches. The note, if any, is a delivery warning such as a missing suite number.</td>
+<td>Nothing, or find the missing detail.</td>
+</tr>
+<tr>
+<td>Google Maps rejected the API key. Contact your administrator.</td>
+<td>The key was refused. Logged as Error.</td>
+<td>Administrator: check or replace the key and run <strong>Test Connection</strong>.</td>
+</tr>
+<tr>
+<td>The Address Validation API is not enabled in the Google Cloud project of this API key. Contact your administrator.</td>
+<td>The API is turned off in the Google project. Logged as Error.</td>
+<td>Administrator: enable the Address Validation API.</td>
+</tr>
+<tr>
+<td>Billing is not enabled for the Google Cloud project of this API key. Contact your administrator.</td>
+<td>Google requires billing to be on. Logged as Error.</td>
+<td>Administrator: enable billing for the project.</td>
+</tr>
+<tr>
+<td>The API key is not allowed to call the Address Validation API. Check the key&#39;s restrictions. Contact your administrator.</td>
+<td>The key&#39;s restrictions exclude this API. Logged as Error.</td>
+<td>Administrator: change the key restriction in Google Cloud.</td>
+</tr>
+<tr>
+<td>Google Maps refused the request: <em>(Google text)</em></td>
+<td>Google refused for another reason. Logged as Error.</td>
+<td>Report the text to your administrator.</td>
+</tr>
+<tr>
+<td>Google Maps could not read the address: <em>(Google text)</em></td>
+<td>Google rejected the request as malformed. Logged as Error.</td>
+<td>Check the address for odd characters and try again.</td>
+</tr>
+<tr>
+<td>The Google Maps request limit has been reached. Try again later.</td>
+<td>A quota or the daily cap set in Google Cloud was reached. All users share the one key. Logged as Error.</td>
+<td>Wait and try again later; the administrator can review the cap.</td>
+</tr>
+<tr>
+<td>Google Maps is not responding. Try again later.</td>
+<td>Google had a server problem, took longer than <strong>Timeout (Seconds)</strong>, or could not be reached. Logged as Error.</td>
+<td>Try again later. If it keeps happening, tell your administrator; the environment may not be allowed to make outside web calls (see the Deployment guide).</td>
+</tr>
+<tr>
+<td>Unexpected response from Google Maps. Contact your administrator.</td>
+<td>Google answered in a way the extension cannot read. Logged as Error.</td>
+<td>Tell your administrator.</td>
+</tr>
+<tr>
+<td>The customer&#39;s address was changed while the suggested address was open, so nothing was updated. Run Validate Address again.</td>
+<td>Someone edited the address while the window was open.</td>
+<td>Run the check again.</td>
+</tr>
+<tr>
+<td>The connection to Google Maps failed. <em>(reason)</em> Google message: <em>(text)</em></td>
+<td>Shown by <strong>Test Connection</strong> when the key, API or billing is not accepted.</td>
+<td>Administrator: fix the Google Cloud setting named in the reason and try again.</td>
+</tr>
+<tr>
+<td>Enter the API key first.</td>
+<td>Test Connection or Finish was attempted without a key.</td>
+<td>Enter the API key.</td>
+</tr>
+<tr>
+<td>The privacy notice for sending addresses to Google Maps has not been agreed to, so the connection was not tested.</td>
+<td>Test Connection needs the privacy notice to be agreed to.</td>
+<td>Run it again and agree.</td>
+</tr>
+<tr>
+<td>This procedure can only be called by the Google Address Validator app.</td>
+<td>Another extension tried to start a check. Not available to other extensions.</td>
+<td>Report it to your administrator.</td>
+</tr>
+<tr>
+<td>(a Business Central error text after you chose OK)</td>
+<td>Google&#39;s answer was fine but saving the customer failed (for example no permission to modify the linked contact, or another extension stopped the save). The customer is unchanged and the check is logged as Error.</td>
+<td>Report the text to your administrator.</td>
+</tr>
+</tbody></table></div>
+<h2>6. Frequently asked questions</h2>
+<p><strong>Q.</strong> Does the extension change my customer&#39;s address by itself?
+<strong>A.</strong> Never. The address changes only when you choose <strong>OK</strong> in the suggestion window.</p>
+<p><strong>Q.</strong> Are the customer&#39;s name or number sent to Google?
+<strong>A.</strong> No. Only the address, city, state and ZIP / postal code are sent, together with the two-letter country code when the record&#39;s country is known.</p>
+<p><strong>Q.</strong> Does it cost money?
+<strong>A.</strong> Each check is one request on your company&#39;s own Google Cloud project (two when a guessed country for a record without a country fails and the check is repeated, section 4.12). Google&#39;s free allowance (5,000 requests a month, shared by all countries; a billing account on India pricing gets 35,000) covers low volume, then it is about $17 per 1,000 (section 4.12). Your administrator should have a daily cap and a budget alert set there.</p>
+<p><strong>Q.</strong> Can I check an address outside the United States?
+<strong>A.</strong> Yes, from version 1.2, in the 40 countries on the Supported Countries page (section 4.12), unless an administrator switched the country off.</p>
+<p><strong>Q.</strong> Can I validate all my customers at once?
+<strong>A.</strong> No. This version works one record at a time, on request.</p>
+<p><strong>Q.</strong> Why is Address Validated switched off again?
+<strong>A.</strong> Someone edited the address after it was validated, someone changed the Country/Region Code (even from blank to the US code), or a later check could not confirm it (section 4.4). On a contact, employee or other linked record it can also follow the record it is linked to (section 4.8).</p>
+<p><strong>Q.</strong> Can I check a Ship-to Address, vendor or contact?
+<strong>A.</strong> Yes, from version 1.1. The cards are listed in section 3.1. Sales documents, purchase documents, lists and the other tables in section 4.10 cannot be checked.</p>
+<p><strong>Q.</strong> I validated a vendor. Why did its contact change as well?
+<strong>A.</strong> Business Central keeps a vendor&#39;s contact in step with the vendor, and the extension keeps the <strong>Address Validated</strong> field in step too (section 4.8).</p>
+<p><strong>Q.</strong> Why does Validate Address say the record is blocked due to privacy?
+<strong>A.</strong> <strong>Privacy Blocked</strong> is on for it or for the customer, vendor, employee or contact it belongs to (section 4.9).</p>
+<p><strong>Q.</strong> I validated the company address. Why is the ship-to address still not validated?
+<strong>A.</strong> They are checked separately (section 4.7).</p>
+<p><strong>Q.</strong> Why does the Google Address Validation Log not show entries I know exist?
+<strong>A.</strong> The log shows you only the entries of the kinds of record you may read yourself (section 4.5). Ask your administrator if you need to see more.</p>
+<p><strong>Q.</strong> I deleted a record. Why is its entry still in the log?
+<strong>A.</strong> The log keeps the record&#39;s key and address until the Retention Policy deletes the row (section 4.5).</p>
+<p><strong>Q.</strong> Why can I see the suggestion but not accept it?
+<strong>A.</strong> Accepting needs permission to modify customers. The reason line in the window tells you.</p>
+<p><strong>Q.</strong> Why does a note say &quot;USPS&quot;?
+<strong>A.</strong> Google&#39;s answer includes US Postal Service delivery data for addresses in the United States and Puerto Rico; the wording of those notes comes from that data. Other countries do not have it.</p>
+<h2>7. Getting help</h2>
+<p>Contact your Business Central administrator. Include the customer number, the time of the check, the exact message you saw, and the matching line from the <strong>Google Address Validation Log</strong> (its <strong>Provider Message</strong> and <strong>HTTP Status</strong> columns). Administrators can find installation, Google Cloud and permission details in the Google Setup section and the deployment guide in the repository.</p>
+<p>The Google Address Validation Log is cleaned up by Business Central&#39;s Retention Policy, which an administrator must switch on (it starts switched off). The planned retention is 2 years.</p>
+
+</section><section class="panel" id="panel-documentation" role="tabpanel" hidden><h1>Documentation</h1><h2>1. Overview</h2>
+<p>Google Address Validator (publisher OnlyBCFans, namespace <code>OnlyBCFans.GoogleAddress</code>, prefix <code>obcfgav</code>, App Code <code>GAV</code>, object ID range 92800–92829, allocated per object type (from 1.3.0.0; 1.0.0.0 to 1.2.x used 60093–60192), target Cloud, runtime 17.0, platform and application 28.0.0.0, no dependencies) adds one action to the Customer Card, <strong>Validate Address</strong>. <strong>From version 1.1 the same action, a read-only Address Validated indicator and an Google Address Validation Log action are on 15 more cards</strong> (§2.3), and Company Information has two address blocks, each with its own action. Wherever this document says &quot;the customer&quot; in §1 to §3.6, read &quot;the record being checked&quot;; §3.2 and §2.3 give the 1.1 changes. It sends the customer&#39;s main address (Address, Address 2, City, State held in County, ZIP Code held in Post Code) to the Google Maps Platform Address Validation API (<code>POST https://addressvalidation.googleapis.com/v1:validateAddress</code>, USPS CASS processing switched on for US and Puerto Rico addresses only). The user then sees the Business Central address and Google&#39;s suggested address side by side and accepts or ignores the suggestion. Every check that reaches the provider is logged, and a read-only <strong>Address Validated</strong> indicator on the customer shows whether the current address was confirmed by, or accepted from, the provider.</p>
+<p>It is for interactive use only and, from 1.2, works in the 40 countries Google covers (§2.4): the record&#39;s country decides the region (for a record without one, the Blank Country Handling setting: the country is worked out from the address, or the Default Country/Region Code is used), and a country that Google does not cover, or that an administrator turned off on the Supported Countries page, is refused before anything is sent. (Versions 1.0.0.0 to 1.1.x were US only.) Nothing runs automatically, in batch, or on a schedule. An administrator creates a Google Cloud API key, enters it once per company (Assisted Setup wizard or setup card), turns the service on, and uses Test Connection. The provider sits behind the interface <code>&quot;obcfgav Address Provider&quot;</code>, so a second provider would be one new codeunit and one enum value; none is built.</p>
+<p><strong>This extension has no API pages and no API queries.</strong> Nothing is exposed over OData or REST. The &quot;API&quot; other extensions can use is the public AL surface described in §3 (public codeunits, two interfaces, the Customer table-extension field, the log table). Section 3 replaces the template&#39;s per-API-page sections. Every one of those entry points runs a caller check (§3.3), so in a production environment only this app can call them.</p>
+<h2>2. Architecture</h2>
+<h3>2.1 Schema diagram</h3>
+<pre class="mermaid">erDiagram
+    COUNTRY_REGION ||--o{ OBCFGAV_SETUP : &quot;US Country/Region Code = Default Country/Region Code (TableRelation)&quot;
+    OBCFGAV_SUPPORTED_COUNTRY }o--o{ COUNTRY_REGION : &quot;Region Code = ISO Code (matched in code, no TableRelation; added by hand for 1.2, not re-rendered)&quot;
+    CUSTOMER ||--o{ OBCFGAV_VALIDATION_LOG : &quot;Customer No. (TableRelation, customers only)&quot;
+    USER ||--o{ OBCFGAV_VALIDATION_LOG : &quot;User ID (TableRelation, not validated)&quot;
+    OBCFGAV_VALIDATION_LOG }o--|| SOURCE_RECORD : &quot;Source Table No. + Source SystemId (no TableRelation)&quot;
+    OBCFGAV_ADDRESS_BUFFER }o--|| SOURCE_RECORD : &quot;temporary, in memory only&quot;
+    RETENTION_POLICY_SETUP ||--o| OBCFGAV_VALIDATION_LOG : &quot;Table Id 92801, Checked At, 2 years&quot;
+
+    CUSTOMER ||--o{ SHIP_TO_ADDRESS : &quot;has&quot;
+    CUSTOMER ||--o{ CUSTOMER_BANK_ACCOUNT : &quot;has&quot;
+    VENDOR ||--o{ ORDER_ADDRESS : &quot;has&quot;
+    VENDOR ||--o{ REMIT_ADDRESS : &quot;has&quot;
+    VENDOR ||--o{ VENDOR_BANK_ACCOUNT : &quot;has&quot;
+    EMPLOYEE ||--o{ ALTERNATIVE_ADDRESS : &quot;has&quot;
+    CONTACT ||--o{ CONTACT_ALT_ADDRESS : &quot;has&quot;
+    CONTACT ||--o{ CONTACT : &quot;person belongs to company&quot;
+    CUSTOMER |o--o| CONTACT : &quot;Contact Business Relation (standard sync)&quot;
+    VENDOR |o--o| CONTACT : &quot;Contact Business Relation (standard sync)&quot;
+    BANK_ACCOUNT |o--o| CONTACT : &quot;Contact Business Relation (standard sync)&quot;
+    EMPLOYEE |o--o| CONTACT : &quot;Contact Business Relation (standard sync)&quot;
+    EMPLOYEE |o--o| RESOURCE : &quot;Resource No.&quot;
+
+    OBCFGAV_SUPPORTED_COUNTRY {
+        Code2 RegionCode PK
+        Text50 Name
+        Boolean Enabled
+        Boolean Preview
+        Boolean ResidentialData
+        Boolean USPSDeliveryData
+    }
+    OBCFGAV_SETUP {
+        Code10 PrimaryKey PK
+        Boolean Enabled
+        Enum Provider
+        Code10 USCountryRegionCode FK
+        Enum BlankCountryHandling
+        Integer TimeoutSeconds
+    }
+    OBCFGAV_VALIDATION_LOG {
+        Integer EntryNo PK
+        Code20 CustomerNo FK
+        DateTime CheckedAt
+        Code50 UserID FK
+        Enum Result
+        Boolean Accepted
+        Integer HTTPStatus
+        Enum Provider
+        Integer SourceTableNo &quot;24&quot;
+        Enum AddressType &quot;25&quot;
+        Guid SourceSystemId &quot;26&quot;
+        Text SourceDescription &quot;27&quot;
+        Text RecordNo &quot;29&quot;
+    }
+    OBCFGAV_ADDRESS_BUFFER {
+        Integer PrimaryKey PK
+        Text OriginalAddressFields
+        Text SuggestedAddressFields
+        Boolean NotFound
+        Integer SourceTableNo
+        Guid SourceSystemId
+    }
+    SOURCE_RECORD {
+        Text Note &quot;one of the 16 tables below&quot;
+    }
+    CUSTOMER {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    SHIP_TO_ADDRESS {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    CUSTOMER_BANK_ACCOUNT {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    VENDOR {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    ORDER_ADDRESS {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    REMIT_ADDRESS {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    VENDOR_BANK_ACCOUNT {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    BANK_ACCOUNT {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    EMPLOYEE {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    ALTERNATIVE_ADDRESS {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    CONTACT {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    CONTACT_ALT_ADDRESS {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    RESOURCE {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    LOCATION {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    RESPONSIBILITY_CENTER {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+    }
+    COMPANY_INFORMATION {
+        Boolean obcfgav_AddressValidated &quot;field 92800&quot;
+        Boolean obcfgav_ShipToValidated &quot;field 92801&quot;
+    }
+    USER
+    COUNTRY_REGION
+    RETENTION_POLICY_SETUP
+</pre>
+<p><strong>What 1.1 adds to the 1.0.0.0 diagram:</strong> log fields 24 to 29 (29 <code>Record No.</code> from 1.1.0.10) and the key <code>SourceCheckedAt</code> (§3.5); buffer fields 30 to 34 (34 <code>Record No.</code> from 1.1.0.10) (§3.5); field 92800 <code>&quot;obcfgav Address Validated&quot;</code> on 15 more tables, and field 92801 <code>&quot;obcfgav Ship-to Validated&quot;</code> on Company Information (§2.3). The log&#39;s <code>Customer No.</code> is now filled only for Customer entries; every entry carries <code>Source Table No.</code> and <code>Source SystemId</code>, a plain relation to the checked record by its system ID, with no TableRelation (so a source record can be deleted and its log rows stay).</p>
+<p>How to read it: the standard side of every relationship is the one named in capitals without an <code>OBCFGAV_</code> prefix (<code>COUNTRY_REGION</code>, <code>CUSTOMER</code>, <code>USER</code>, <code>RETENTION_POLICY_SETUP</code>, <code>CONTACT</code> and the other standard tables). The attribute lists show only the key, the relation fields and a few representative fields; §3.5 lists every field. The marker FK means &quot;has a TableRelation&quot;, not a database foreign key.</p>
+<ul>
+<li><strong>Setup to Country/Region:</strong> the setup table has one row per company (Primary Key blank), so in practice it is 1 to 0..1. The relation exists only to pick the Default Country/Region Code (since 1.2 it may be blank). <strong>1.2:</strong> <code>OBCFGAV_SUPPORTED_COUNTRY</code> (table 92803, §2.4) has no TableRelation; its Region Code is matched in code with the Country/Region <strong>ISO Code</strong> (diagram lines added by hand for 1.2 and not re-rendered).</li>
+<li><strong>Customer to Validation Log:</strong> one customer, many log rows. The relation lets a customer rename carry through to the log. The app adds no delete handling for any source record: the log rows of a deleted record stay until the Retention Policy deletes them (§7, §8); what the <code>Customer No.</code> TableRelation does on a customer delete is standard platform behaviour and was not checked.</li>
+<li><strong>Source record to Validation Log (1.1):</strong> <code>Source Table No.</code> + <code>Source SystemId</code> identify the checked record of any of the 16 sources; there is no TableRelation, and the key <code>SourceCheckedAt</code> serves the card&#39;s log action.</li>
+<li><strong>User to Validation Log:</strong> <code>User ID</code> has <code>ValidateTableRelation = false</code>, so a log row survives when the user is later deleted.</li>
+<li><strong>Customer to Address Buffer:</strong> the buffer is a temporary table, filled from one customer for one check and discarded. It is not stored.</li>
+<li><strong>Retention Policy Setup to Validation Log:</strong> the app registers one Retention Policy Setup row for table 92801 (filter field <code>Checked At</code>), custom period <code>OBCFGAV-2Y</code> (<code>&lt;-2Y&gt;</code>), created <strong>disabled</strong> (§7).</li>
+<li><strong>Customer, Vendor, Bank Account, Employee to Contact; Employee to Resource:</strong> notes, not app tables. The extension asks Business Central to keep the linked record in step through the standard sync (§4, §8).</li>
+<li><strong>Customer table extension 92800</strong> adds field 92800 to the standard Customer table; the field belongs to the Customer table, the extension object belongs to this app.</li>
+</ul>
+<h3>2.2 Modules and objects</h3>
+<p>Source folders: <code>src/Setup/</code>, <code>src/Validation/</code>, and (1.1) <code>src/Sources/</code> and <code>src/Upgrade/</code>; app icon <code>src/logo/AppLogo.png</code>. Test app (separate, never deployed to production): <code>Google Address Validator Tests</code>, id <code>ebe1c8ca-a413-4f2b-9de7-37d8c1ae4d5a</code>, ID range 92830–92849, version 0.0.0.24, depends on this app at 1.3.0.0, 155 automated tests (61 from 1.0.0.0 plus 73 for 1.1 plus 21 for SC-4, SC-5 and SC-5a: 24 + 29 + 8 + 54 + 19 + 21; none has been run).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Objects (ID — type — name)</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Setup</td>
+<td>field 92800 — enum — <code>obcfgav Validation Result</code></td>
+<td>Outcome of a check: <code> </code> (0), Confirmed (1), Suggestion Accepted (2), Suggestion Ignored (3), Not Found (4), Error (5). <code>Extensible = false</code>.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>field 92801 — enum — <code>obcfgav Address Provider</code></td>
+<td>Provider: <code> </code> (0), Google (1, caption &quot;Google Maps&quot;). <code>Extensible = false</code>.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>table 92800 — table — <code>obcfgav Setup</code></td>
+<td>One row per company: Enabled, Provider, Default Country/Region Code (field name &quot;US Country/Region Code&quot;), Blank Country Handling (field 6, SC-5), timeout.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>page 92800 — page (Card) — <code>obcfgav Setup</code></td>
+<td>&quot;Google Address Validation Setup&quot;: settings, API key entry, Test Connection.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>page 92801 — page (NavigatePage) — <code>obcfgav Setup Wizard</code></td>
+<td>&quot;Set Up Google Address Validation&quot; Assisted Setup wizard (1.3.0.1): the API key (kept and shown masked when one is already saved), then the Default Country/Region Code and Blank Country Handling, on a temporary copy of the setup record that is saved on Finish.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>codeunit 92800 — codeunit — <code>obcfgav Credential Mgt.</code></td>
+<td>Stores and reads the API key in isolated storage; owns the caller check. <code>Access = Public</code>.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>codeunit 92801 — codeunit (Install) — <code>obcfgav Install</code></td>
+<td>Runs <code>RegisterAll()</code> on install. <code>Access = Internal</code>.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>codeunit 92802 — codeunit — <code>obcfgav Setup Registration</code></td>
+<td>Registers the retention policy, the Assisted Setup entry and the privacy notice; subscribes to company initialization. <code>Access = Internal</code>.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>permission set 92800 — permission set — <code>OBCFGAV GAV, USE</code></td>
+<td>Use the feature.</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>permission set 92801 — permission set — <code>OBCFGAV GAV, ADMIN</code></td>
+<td>Administer; includes USE.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>table 92801 — table — <code>obcfgav Validation Log</code></td>
+<td>Audit log of every check that reached the provider (and every accept).</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>page 92802 — page (List) — <code>obcfgav Log Entries</code></td>
+<td>&quot;Google Address Validation Log&quot;, read-only.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>table 92802 — table (Temporary) — <code>obcfgav Address Buffer</code></td>
+<td>In-memory carrier between the Customer, the provider and the dialog.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>page 92803 — page (StandardDialog) — <code>obcfgav Address Compare</code></td>
+<td>&quot;Suggested Address&quot;: side-by-side comparison, OK accepts, Cancel ignores.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>codeunit 92803 — codeunit — <code>obcfgav Address Validation</code></td>
+<td>The orchestrator and the public entry point. <code>Access = Public</code>.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>codeunit 92804 — codeunit — <code>obcfgav Address Service</code></td>
+<td>Resolves provider and transport, runs the provider call. <code>Access = Public</code>.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>codeunit 92805 — codeunit — <code>obcfgav Http Transport Impl.</code></td>
+<td>Default HTTP transport (<code>HttpClient</code>). <code>Access = Public</code>; implements <code>&quot;obcfgav Http Transport&quot;</code>.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>table extension 92800 — table extension — <code>obcfgav Customer</code> (extends Customer)</td>
+<td>Field 92800 &quot;Address Validated&quot; and the reset-on-edit triggers.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>page extension 92800 — page extension — <code>obcfgav Customer Card</code> (extends Customer Card)</td>
+<td>The Validate Address action, the Address Validated field, the log link.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>codeunit 92806 — codeunit — <code>obcfgav Validation Writer</code></td>
+<td>Writes the customer and the log inside one failure boundary (<code>Run</code>). <code>Access = Internal</code>.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>codeunit 92807 — codeunit — <code>obcfgav Google Address Client</code></td>
+<td>Builds the Google request, reads the answer; implements <code>&quot;obcfgav Address Provider&quot;</code>. <code>Access = Internal</code>.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>interface — <code>obcfgav Http Transport</code></td>
+<td><code>Send(...)</code>.</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>interface — <code>obcfgav Address Provider</code></td>
+<td><code>ValidateAddress</code>, <code>TestConnection</code>, <code>HasCredentials</code>, <code>DisplayName</code>.</td>
+</tr>
+</tbody></table></div>
+<p>Interfaces carry no object ID. There is no event publisher. <strong>Version 1.1 adds upgrade codeunits</strong> (codeunit 92811, codeunit 92812, and from 1.1.0.10 codeunit 92814); there were none in 1.0.0.0.</p>
+<h3>2.3 Objects added in version 1.1 (SC-1)</h3>
+<p>Source of the list: <code>docs/1-define/ObjectRegister.md</code>, which gives every object&#39;s ID (since 1.3.0.0 allocated per object type from 92800) and its pre-1.3 ID.</p>
+<p><strong>Engine and upgrade</strong> (all <code>Access = Internal</code> unless noted)</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum 92802</td>
+<td>enum</td>
+<td><code>obcfgav Address Type</code></td>
+<td><code>Main</code> (0), <code>Ship-to</code> (1). <code>Extensible = false</code>. Ship-to is valid only for Company Information.</td>
+</tr>
+<tr>
+<td>codeunit 92808</td>
+<td>codeunit (<code>EventSubscriberInstance = Manual</code>)</td>
+<td><code>obcfgav Write Guard</code></td>
+<td>While bound by the writer around an Accept, suppresses the standard duplicate-contact form (<code>Contact.OnBeforeLaunchDuplicateForm</code>, <code>IsHandled := true</code>).</td>
+</tr>
+<tr>
+<td>codeunit 92809</td>
+<td>codeunit</td>
+<td><code>obcfgav Address Source</code></td>
+<td>The table-agnostic engine: the per-table address field map, reading and writing the address through a RecordRef, the Privacy Blocked test, the key description for the log, and the per-table save (§3.2).</td>
+</tr>
+<tr>
+<td>codeunit 92810</td>
+<td>codeunit</td>
+<td><code>obcfgav Upgrade Tags</code></td>
+<td>The three upgrade tags <code>OBCFGAV-SC1-LogSource-20261017</code>, <code>OBCFGAV-SC1-ContactFlag-20261017</code> and (1.1.0.10) <code>OBCFGAV-SC1-RecordNo-20261018</code>; sets them on a fresh install; registers them with <code>Upgrade Tag.OnGetPerCompanyUpgradeTags</code>.</td>
+</tr>
+<tr>
+<td>codeunit 92811</td>
+<td>codeunit (Upgrade)</td>
+<td><code>obcfgav Upgrade Log Source</code></td>
+<td>One-time, per company: gives every 1.0.0.0 log row a source (§7).</td>
+</tr>
+<tr>
+<td>codeunit 92812</td>
+<td>codeunit (Upgrade)</td>
+<td><code>obcfgav Upgrade Contact Flag</code></td>
+<td>One-time, per company: marks the linked Contact of every validated Customer (§7).</td>
+</tr>
+<tr>
+<td>codeunit 92814</td>
+<td>codeunit (Upgrade)</td>
+<td><code>obcfgav Upgrade Record No.</code></td>
+<td><em>(1.1.0.10, SC-2)</em> One-time, per company: fills the log&#39;s Record No. on existing rows (§7).</td>
+</tr>
+<tr>
+<td>codeunit 92813</td>
+<td>codeunit</td>
+<td><code>obcfgav Address Sync Subscr.</code></td>
+<td>The linked-record update (<code>OnRun</code>, run after the check is committed) and the subscribers that keep Address Validated in step on Contact, Employee and Resource (§4).</td>
+</tr>
+</tbody></table></div>
+<p><strong>Per source: table extension and page extension</strong> (each table extension adds field 92800 and the reset-on-edit triggers; each page extension adds the field, <strong>Validate Address</strong>, a promoted action reference and <strong>Google Address Validation Log</strong>)</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Source (table)</th>
+<th>Table ext. / page ext.</th>
+<th>Card page extended</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ship-to Address (222)</td>
+<td>table extension 92801 / page extension 92801</td>
+<td>Ship-to Address (300)</td>
+<td></td>
+</tr>
+<tr>
+<td>Customer Bank Account (287)</td>
+<td>table extension 92802 / page extension 92802</td>
+<td>Customer Bank Account Card (423)</td>
+<td></td>
+</tr>
+<tr>
+<td>Vendor (23)</td>
+<td>table extension 92803 / page extension 92803</td>
+<td>Vendor Card (26)</td>
+<td></td>
+</tr>
+<tr>
+<td>Order Address (224)</td>
+<td>table extension 92804 / page extension 92804</td>
+<td>Order Address (368)</td>
+<td></td>
+</tr>
+<tr>
+<td>Remit Address (2224)</td>
+<td>table extension 92805 / page extension 92805</td>
+<td>Remit Address (2368)</td>
+<td></td>
+</tr>
+<tr>
+<td>Vendor Bank Account (288)</td>
+<td>table extension 92806 / page extension 92806</td>
+<td>Vendor Bank Account Card (425)</td>
+<td></td>
+</tr>
+<tr>
+<td>Company Information (79)</td>
+<td>table extension 92807 / page extension 92807</td>
+<td>Company Information (1)</td>
+<td>Also field 92801 &quot;Ship-to Validated&quot; (caption &quot;Ship-to Address Validated&quot;) and a second action, <strong>Validate Ship-to Address</strong>.</td>
+</tr>
+<tr>
+<td>Location (14)</td>
+<td>table extension 92808 / page extension 92808</td>
+<td>Location Card (5703)</td>
+<td></td>
+</tr>
+<tr>
+<td>Responsibility Center (5714)</td>
+<td>table extension 92809 / page extension 92809</td>
+<td>Responsibility Center Card (5714)</td>
+<td></td>
+</tr>
+<tr>
+<td>Bank Account (270)</td>
+<td>table extension 92810 / page extension 92810</td>
+<td>Bank Account Card (370)</td>
+<td></td>
+</tr>
+<tr>
+<td>Employee (5200)</td>
+<td>table extension 92811 / page extension 92811</td>
+<td>Employee Card (5200)</td>
+<td></td>
+</tr>
+<tr>
+<td>Alternative Address (5201)</td>
+<td>table extension 92812 / page extension 92812</td>
+<td>Alternative Address Card (5203)</td>
+<td></td>
+</tr>
+<tr>
+<td>Contact (5050)</td>
+<td>table extension 92813 / page extension 92813</td>
+<td>Contact Card (5050)</td>
+<td>Companies and persons.</td>
+</tr>
+<tr>
+<td>Contact Alt. Address (5051)</td>
+<td>table extension 92814 / page extension 92814</td>
+<td>Contact Alt. Address Card (5056)</td>
+<td></td>
+</tr>
+<tr>
+<td>Resource (156)</td>
+<td>table extension 92815 / page extension 92815</td>
+<td>Resource Card (76)</td>
+<td>Persons and machines.</td>
+</tr>
+<tr>
+<td>Customer (18, 1.0.0.0)</td>
+<td>table extension 92800 / page extension 92800</td>
+<td>Customer Card (21)</td>
+<td>Unchanged object IDs; table extension 92800 gains the Country/Region reset (§3.4).</td>
+</tr>
+</tbody></table></div>
+<p><strong>Shared field number.</strong> Every source table gets <code>field(92800; &quot;obcfgav Address Validated&quot;)</code>. One number is reused across the table extensions on purpose: standard Business Central copies Customer, Vendor, Bank Account and Contact into one another with <code>TransferFields</code>, which copies by field number, so the indicator travels with the address. Company Information additionally has <code>field 92801</code>.</p>
+<p><strong>Changed 1.0.0.0 objects:</strong> page 92800 (tooltip texts), codeunit 92801 (install also sets the upgrade tags), codeunit 92802 (Assisted Setup description now &quot;Enter the Google Maps API key used to validate addresses.&quot; for newly created companies only), permission set 92800, table 92801, page 92802, table 92802, page 92803 (tooltips), codeunit 92803, table extension 92800 (Country/Region reset), codeunit 92806. <code>app.json</code> version 1.1.0.10 (IDs as then numbered; see the Object Register for the 1.3.0.0 numbers).</p>
+<p><strong>Changed by SC-2 (1.1.0.10):</strong> captions and search terms: table 92800 and page 92800 &quot;Google Address Validation Setup&quot;, page 92801 &quot;Set Up Google Address Validation&quot;, table 92801 and page 92802 &quot;Google Address Validation Log&quot;, the log action on all 16 cards (Customer Card and the 15 others) &quot;Google Address Validation Log&quot;, the Assisted Setup entry &quot;Set up Google address validation&quot; (short title &quot;Google address validation&quot;, description &quot;Enter the Google Maps API key used to validate addresses.&quot;), and <code>AdditionalSearchTerms</code> on pages 92800 and page 92802 (found in Tell Me search by &quot;Google&quot;, &quot;Google Maps&quot; or &quot;address validation&quot;; the wizard page 92801 is reached through Assisted Setup, whose entry is re-registered by a subscriber to Guided Experience <code>OnRegisterAssistedSetup</code> so a changed title reaches existing companies); log field 29 and buffer field 34 &quot;Record No.&quot; with <code>RecordKeyText</code> in codeunit 92809 (new public procedure of the internal engine, returns Text[100]), the buffer load in codeunit 92809, the writer codeunit 92806 and page 92802; new upgrade codeunit 92814 and its tag in codeunit 92810 (set on install and registered). Test app 0.0.0.18: <code>AssertLogSource</code> also asserts Record No. The schema change is additive (Schema Sync Mode Add).</p>
+<p><strong>Changed after the Step 09 Code Review (1.1.0.4 and 1.1.0.8, ChangeLog SC-1h):</strong> permission set 92800 (<code>tabledata &quot;obcfgav Validation Log&quot;</code> from <code>Ri</code> to <code>ri</code>, indirect); page 92802 (<code>Permissions = tabledata &quot;obcfgav Validation Log&quot; = r</code> and an <code>OnOpenPage</code> filter on Source Table No. from <code>ReadableSourceFilter()</code> of codeunit 92809); table 92801 field 26 (now inherits <code>CustomerContent</code>); the 17 reset procedures in the table extensions (the country joined the compare; Company Information&#39;s <code>Ship-to Country/Region Code</code> gained a trigger); and the four propagation compares (codeunit 92813 three times, codeunit 92812), which now include the country. No object was added or removed; the schema did not change.</p>
+<p><strong>Test app (not deployed to production):</strong> codeunit 92836 <code>obcfgav Source Tests</code> (54 tests, including TestAcceptSetsUsCountry, TestConfirmedSetsUsCountry and TestNotFoundKeepsBlankCountry for FR-18.6), codeunit 92837 <code>obcfgav Sync Tests</code> (19 tests), and additions to the helper codeunit 92831 <code>obcfgav Test Library</code>.</p>
+<h3>2.4 Objects added in version 1.2 (SC-4, 40 countries; SC-5 / SC-5a, blank-country handling)</h3>
+<p>Version 1.2 (carried into 1.3.0.0) validates addresses in the 40 countries Google&#39;s Address Validation API covers.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>table 92803</td>
+<td>table</td>
+<td><code>obcfgav Supported Country</code></td>
+<td>One row per region Google covers: Region Code (Code[2], key), Name, Enabled (default Yes), Preview, Residential and Commercial Data, USPS Delivery Data. Seeded with 40 rows.</td>
+</tr>
+<tr>
+<td>page 92804</td>
+<td>page (List)</td>
+<td><code>obcfgav Supported Countries</code></td>
+<td>&quot;Google Address Validation Supported Countries&quot;: opened from the setup card (action Supported Countries) or Tell Me. Only <strong>Enabled</strong> is editable; no insert, no delete; it seeds an empty table on open for a user who may write it.</td>
+</tr>
+<tr>
+<td>codeunit 92815</td>
+<td>codeunit (Internal)</td>
+<td><code>obcfgav Country Mgt.</code></td>
+<td>Seeds the rows; maps a Business Central country to a region (ISO Code; <code>UK</code> to <code>GB</code>; a 2-letter code as it is); checks that a region is covered and enabled; finds the Business Central code for a region; names the countries for messages. SC-5 / SC-5a add <code>RegionForRecord(CountryCode; State; PostalCode; var Region; var CountryName; var Inferred): Boolean</code> (the region for a record; sets <code>Inferred</code> when the region was guessed from the address), <code>LooksLikeUnitedStates(State; PostalCode)</code> (state in the list of the 50 states, DC, PR, AA, AE, AP, and a Post Code of 5 or 9 digits once spaces and hyphens are removed) and <code>HasUsableCanadianPostalCode(PostCode)</code> (moved here from Address Validation). <code>RegionForCheck(CountryCode; var Region; var CountryName)</code> is kept for the Setup page&#39;s default-country warning.</td>
+</tr>
+<tr>
+<td>codeunit 92816</td>
+<td>codeunit (Upgrade)</td>
+<td><code>obcfgav Upgrade Countries</code></td>
+<td>Once per company on upgrade: seeds the 40 rows, tag <code>OBCFGAV-SC4-Countries-20261018</code> (also set on a fresh install).</td>
+</tr>
+<tr>
+<td>enum 92803</td>
+<td>enum</td>
+<td><code>obcfgav Blank Country Handling</code></td>
+<td>SC-5: <strong>Let Google decide</strong> (0, the default) and <strong>Use default country</strong> (1). <code>Extensible = false</code> (a closed two-value setting, SC-5a decision). Used by Setup field 6.</td>
+</tr>
+<tr>
+<td>codeunit 92838</td>
+<td>codeunit (Test), test app</td>
+<td><code>obcfgav Country Tests</code></td>
+<td>21 tests (15 for SC-4, 4 added for SC-5 and 2 for SC-5a; test app 0.0.0.23).</td>
+</tr>
+</tbody></table></div>
+<p><strong>Changed objects:</strong> Setup table field 4 (name <code>US Country/Region Code</code> kept; caption now &quot;Default Country/Region Code&quot;: the country used for a blank-country record when Blank Country Handling is Use default country; blank is allowed and then no region is sent) and the new <strong>field 6 <code>Blank Country Handling</code></strong> (enum 92803; schema change, additive: Schema Sync Mode Add); Setup page 92800 (caption, tooltips, the Blank Country Handling field, action Supported Countries, a warning when the default country is not covered, turned off or has no ISO Code); Country Mgt. codeunit 92815 (above); Address Validation codeunit 92803 (<code>CheckPreconditions</code> takes the record&#39;s state and ZIP code and returns whether the region was inferred; <code>RunValidation</code> repeats the request once without a region when an inferred region ends in Not Found); Address Buffer table 92802 (temporary) fields 35 Country/Region Code (Code[10]), 36 Region Code (Code[2], the region sent) and 37 Result Region Code (Code[2], the region Google returned); Address Validation codeunit 92803 (region choice and per-region input rules); Google Address Client codeunit 92807 (region only when known, CASS for US and PR only, region check on the answer, address lines and sublocality to Address 2); Address Source codeunit 92809 (<code>SetCountryIfBlank</code> replaces <code>SetUsCountryIfBlank</code>); Validation Writer codeunit 92806; Address Compare page 92803 (country line, captions &quot;State / Province&quot; and &quot;ZIP / Postal Code&quot;); Upgrade Tags codeunit 92810; Setup Registration codeunit 92802 (seeds the rows); permission sets USE (read the table, run the page and codeunit) and ADMIN (full access to the table).</p>
+<p><strong>How the region is chosen (<code>RegionForRecord</code>):</strong> the record&#39;s Country/Region Code through the Country/Region <strong>ISO Code</strong> (<code>UK</code> maps to <code>GB</code>, a 2-letter code with no ISO Code is used as it is). When the code is blank, the Setup field <strong>Blank Country Handling</strong> decides. <em>Use default country:</em> the Default Country/Region Code is mapped the same way; if it is blank, no region is sent and nothing is guessed. <em>Let Google decide</em> (the default; also the value an upgraded Setup row gets, because the enum&#39;s first value is 0): a Canadian postal code (A1A 1A1, spaces and hyphens ignored) gives CA; else a State in the US list with a 5- or 9-digit Post Code gives US (so <code>enableUspsCass</code> is requested); else no region is sent and Google works the country out. A guessed region is flagged <code>Inferred</code>. A chosen region must be in the table and <strong>Enabled</strong>.</p>
+<p><strong>The repeat (SC-5a):</strong> in <code>RunValidation</code>, when the region was inferred and the first answer is Not Found, the region is cleared, the buffer is filled again and the request is sent once more with no region. Only the second answer is used and logged. This costs one extra billable request, and only in that case. After a request with no region, the result region (if any) must be covered and enabled, else the check ends as Not Found with that message.</p>
+<p><strong>Input rules:</strong> US and PR — street plus a ZIP (first five characters digits) or city and state; Canada — street plus a postal code like A1A 1A1 or city and province; every other region — street plus a city or a postal code. State or province, when given for US, PR or CA, is a 2-letter code.</p>
+<p><strong>Request and result:</strong> <code>regionCode</code> only when known; <code>enableUspsCass</code> only for US and PR; a result in a different region is a Not Found (US and PR count as one); for a record without a country, a result in a country that is not covered or not enabled is a Not Found; outside US, CA and PR a missing state, city or postal code in the answer keeps the record&#39;s own value; extra address lines (else the sublocality) become Address 2. On Accept and Confirmed a blank Country/Region Code is filled in from the result region, else the region that was sent; the dialog shows &quot;The Country/Region will be set to X.&quot; when that will happen. The Test Connection probe still sends region US with no address.</p>
+<p><strong>Cost and privacy:</strong> the same Address Validation Pro SKU in every country: 5,000 free requests a month, then about $17 per 1,000, shared by all countries (Google gives a higher free allowance (35,000 a month) only to billing accounts that are billed at India pricing; that depends on your Google billing account, not on the country of the address, and no separate API key is needed for India). All 40 countries are enabled on install and on upgrade, so addresses outside the US (customers, vendors, employees, contacts and the other sources) can be sent to Google when a user runs Validate Address; administrators should turn off the countries they do not want.</p>
+<h2>3. API reference</h2>
+<p><strong>There are no API pages and no API queries in this extension</strong> (no <code>PageType = API</code>, no <code>query</code> object). Nothing is reachable through OData or the Business Central API endpoints. What follows is the AL surface and the data an administrator or another extension can see.</p>
+<h3>3.1 Quick-start for an administrator</h3>
+<ol>
+<li><strong>Google Cloud.</strong> In the Google Cloud console create (or pick) a project, <strong>enable billing</strong> on it, <strong>enable the Address Validation API</strong>, and create an <strong>API key</strong>.</li>
+<li><strong>Restrict the key.</strong> Under the key&#39;s restrictions choose &quot;Restrict key&quot; and select <strong>only the Address Validation API</strong>. Do not leave the key unrestricted.</li>
+<li><strong>Cap the spend.</strong> Set a <strong>daily request quota cap</strong> for the API (for example 100 per day) and a <strong>budget alert</strong> (for example $1). Each check is one billable request; the design relies on the free monthly allowance and these two limits.</li>
+<li><strong>Business Central.</strong> Assign the permission set <code>OBCFGAV GAV, ADMIN</code> to the administrator and <code>OBCFGAV GAV, USE</code> to the users who validate customers (users also need their normal Customer and Contact permissions, §5).</li>
+<li><strong>Enter the key.</strong> Open <strong>Assisted Setup &gt; Set up Google address validation</strong> (the wizard asks for the API key, the default country and Blank Country Handling) or open <strong>Google Address Validation Setup</strong> (search for &quot;Google&quot;) and type the key into <strong>API Key</strong>. The key is stored for this company in isolated storage (encrypted when encryption is on), shown masked, and cannot be read back.</li>
+<li><strong>Turn it on.</strong> On <strong>Google Address Validation Setup</strong> set <strong>Enabled</strong> to Yes. Choose <strong>Blank Country Handling</strong>: <strong>Let Google decide</strong> (the default) works the country out of each record without one; <strong>Use default country</strong> (choose it in a company that only checks one country, for example US-only) checks every such record as an address in the <strong>Default Country/Region Code</strong> (<code>US</code> unless your records without a country are elsewhere; if blank, no country is sent). Open <strong>Supported Countries</strong> from the card to turn off any of the 40 countries you do not want (all are on by default). Leave <strong>Timeout (Seconds)</strong> at 10 unless Google is slow for you (allowed 1 to 60). The wizard does not enable the service.
+<img src="screenshots/setup-page.png" alt="Google Address Validation Setup page"></li>
+<li><strong>Test Connection.</strong> Choose <strong>Test Connection</strong>. The first time, the platform asks you to agree to the privacy notice; if you do not, the test stops (&quot;The privacy notice for sending addresses to Google Maps has not been agreed to, so the connection was not tested.&quot;). On success: &quot;The connection to Google Maps works. The API key was accepted.&quot; The test sends one deliberately incomplete request (no address lines); no address and no customer data is sent.
+<img src="screenshots/test-connection-ok.png" alt="Test Connection succeeded"></li>
+<li><strong>Validate a customer.</strong> Open a US customer on the Customer Card, choose <strong>Validate Address</strong> (promoted, also under Actions &gt; Functions), and accept or ignore the suggestion. <strong>Google Address Validation Log</strong> (under Customer) shows the history.</li>
+<li><strong>Optional.</strong> Turn on the retention policy (§7) so log rows older than two years are deleted.</li>
+</ol>
+<h3>3.2 Public AL surface for other extensions</h3>
+<p>All procedures below run the caller check described in §3.3 unless the table says &quot;no check&quot;. <code>Access = Public</code> here means the symbol is visible to other apps; the check is what stops them in production. Return values are as in the code.</p>
+<p><strong>Codeunit 92803 <code>&quot;obcfgav Address Validation&quot;</code> (<code>Access = Public</code>) — the orchestrator</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Procedure</th>
+<th>Signature</th>
+<th>Access</th>
+<th>Caller check</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SetTransport</code></td>
+<td><code>(NewTransport: Interface &quot;obcfgav Http Transport&quot;)</code></td>
+<td>public</td>
+<td>yes</td>
+<td>Replaces the HTTP layer (used by tests).</td>
+</tr>
+<tr>
+<td><code>SetProvider</code></td>
+<td><code>(NewProvider: Interface &quot;obcfgav Address Provider&quot;)</code></td>
+<td>public</td>
+<td>yes</td>
+<td>Replaces the provider (used by tests).</td>
+</tr>
+<tr>
+<td><code>ValidateCustomerAddress</code></td>
+<td><code>(CustomerNo: Code[20])</code></td>
+<td>public</td>
+<td>yes</td>
+<td><strong>Kept unchanged in 1.1</strong> (same signature, same behaviour for the caller; it is the Customer Card&#39;s action). Runs <code>TryValidateCustomerAddress</code>; on failure raises <code>Error</code> with the user text; otherwise shows the result text with <code>Message</code>. This is what the Customer Card action calls.</td>
+</tr>
+<tr>
+<td><code>TryValidateCustomerAddress</code></td>
+<td><code>(CustomerNo: Code[20]; var Outcome: Enum &quot;obcfgav Validation Result&quot;; var UserMessage: Text): Boolean</code></td>
+<td>public</td>
+<td>yes</td>
+<td>The check itself: customer lookup, preconditions (§3.6), privacy-notice approval, provider call, the comparison dialog, then the write and the log. Returns false for refusals and failures; <code>Outcome</code> and <code>UserMessage</code> are filled. Commits as described in §8.</td>
+</tr>
+<tr>
+<td><code>ValidateAddress</code> <em>(1.1)</em></td>
+<td><code>(SourceTableNo: Integer; SourceSystemId: Guid; AddressType: Enum &quot;obcfgav Address Type&quot;)</code></td>
+<td>public</td>
+<td>yes</td>
+<td>The generic form of <code>ValidateCustomerAddress</code>: runs the check for one address of one record of any of the 16 supported tables, identified by table number and <code>SystemId</code>; on failure raises <code>Error</code> with the user text, otherwise shows the result text with <code>Message</code>. This is what every new card&#39;s action calls (after <code>CurrPage.SaveRecord()</code> and <code>Commit()</code>). <code>AddressType</code> is <code>Main</code> except for Company Information&#39;s ship-to block.</td>
+</tr>
+<tr>
+<td><code>TryValidateAddress</code> <em>(1.1)</em></td>
+<td><code>(SourceTableNo: Integer; SourceSystemId: Guid; AddressType: Enum &quot;obcfgav Address Type&quot;; var Outcome: Enum &quot;obcfgav Validation Result&quot;; var UserMessage: Text): Boolean</code></td>
+<td>public</td>
+<td>yes</td>
+<td>The generic check without the <code>Error</code>/<code>Message</code> wrapper. Returns false and fills <code>UserMessage</code> for a table or block that is not supported (<em>Address validation is not available for this record.</em>), a record that is not found (<em>The record was not found.</em>), a Privacy Blocked record or child of one (<em>Address validation is not available for this record because it is blocked due to privacy.</em>; nothing sent, nothing logged), and every refusal or failure of §3.6.</td>
+</tr>
+<tr>
+<td><code>CanModifySource</code> <em>(1.1)</em></td>
+<td><code>(SourceTableNo: Integer): Boolean</code></td>
+<td>public</td>
+<td>no check</td>
+<td>True when the user&#39;s effective permission on that table&#39;s data includes Modify. Read-only. <code>CanModifyCustomers()</code> now calls it with the Customer table.</td>
+</tr>
+<tr>
+<td><code>ValuesDiffer</code></td>
+<td><code>(BCValue: Text; ProviderValue: Text): Boolean</code></td>
+<td>public</td>
+<td>no check</td>
+<td>True when the two values differ after upper-casing, removing periods and commas, and collapsing repeated spaces (FR-3). Pure function.</td>
+</tr>
+<tr>
+<td><code>CanModifyCustomers</code></td>
+<td><code>(): Boolean</code></td>
+<td>public</td>
+<td>no check</td>
+<td>True when the current user&#39;s effective permission on Customer table data includes Modify. Read-only.</td>
+</tr>
+<tr>
+<td><code>DeliveryWarning</code></td>
+<td><code>(TempAddressBuffer: Record &quot;obcfgav Address Buffer&quot; temporary): Text</code></td>
+<td><strong>internal</strong></td>
+<td>n/a</td>
+<td>Delivery warning line from DPV code <code>D</code> or next action <code>CONFIRM_ADD_SUBPREMISES</code> (suite missing), <code>S</code> (suite unconfirmed), <code>N</code> (not deliverable); blank otherwise.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Codeunit 92804 <code>&quot;obcfgav Address Service&quot;</code> (<code>Access = Public</code>) — provider and transport resolution</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Procedure</th>
+<th>Signature</th>
+<th>Access</th>
+<th>Caller check</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SetTransport</code></td>
+<td><code>(NewTransport: Interface &quot;obcfgav Http Transport&quot;)</code></td>
+<td>public</td>
+<td>yes</td>
+<td>Replaces the HTTP layer.</td>
+</tr>
+<tr>
+<td><code>SetProvider</code></td>
+<td><code>(NewProvider: Interface &quot;obcfgav Address Provider&quot;)</code></td>
+<td>public</td>
+<td>yes</td>
+<td>Replaces the provider.</td>
+</tr>
+<tr>
+<td><code>ValidateAddress</code></td>
+<td><code>(var TempAddressBuffer: Record &quot;obcfgav Address Buffer&quot; temporary): Boolean</code></td>
+<td>public</td>
+<td>yes (first statements, added at Step 09)</td>
+<td>Clears the result fields, loads setup, resolves the provider, checks credentials, calls the provider with the setup timeout, saves the buffer row. Does <strong>not</strong> check <code>Enabled</code>; the orchestrator does.</td>
+</tr>
+<tr>
+<td><code>TestConnection</code></td>
+<td><code>(var ErrorText: Text): Boolean</code></td>
+<td>public</td>
+<td>yes</td>
+<td>Setup, provider and credential checks, then the provider&#39;s test.</td>
+</tr>
+<tr>
+<td><code>ProviderDisplayName</code></td>
+<td><code>(): Text</code></td>
+<td>public</td>
+<td>no check</td>
+<td>Provider name for messages (<code>Google Maps</code>), blank when setup is missing.</td>
+</tr>
+<tr>
+<td><code>SetupIncompleteText</code></td>
+<td><code>(): Text</code></td>
+<td>internal</td>
+<td>n/a</td>
+<td>The &quot;not set up&quot; message text.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Codeunit 92800 <code>&quot;obcfgav Credential Mgt.&quot;</code> (<code>Access = Public</code>) — the API key</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Procedure</th>
+<th>Signature</th>
+<th>Access</th>
+<th>Caller check</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SetApiKey</code></td>
+<td><code>(NewValue: SecretText)</code></td>
+<td>public, <code>[NonDebuggable]</code></td>
+<td>yes</td>
+<td>Stores the key (<code>SetEncrypted</code> when encryption is enabled, otherwise <code>Set</code>), <code>DataScope::Company</code>, storage key <code>OBCFGAV-ApiKey</code>. An empty value deletes the key. Marks the Assisted Setup entry complete when a key exists.</td>
+</tr>
+<tr>
+<td><code>HasApiKey</code></td>
+<td><code>(): Boolean</code></td>
+<td>public</td>
+<td>no check</td>
+<td>True when a key is stored. Never returns the key.</td>
+</tr>
+<tr>
+<td><code>GetApiKey</code></td>
+<td><code>(): SecretText</code></td>
+<td>internal, <code>[NonDebuggable]</code></td>
+<td>n/a</td>
+<td>Returns the key as <code>SecretText</code>; used only by the Google client.</td>
+</tr>
+<tr>
+<td><code>CheckCallerAllowed</code></td>
+<td><code>(CallerModuleInfo: ModuleInfo)</code></td>
+<td>internal</td>
+<td>n/a</td>
+<td>The caller check itself (§3.3).</td>
+</tr>
+</tbody></table></div>
+<p><strong>Codeunit 92802 <code>&quot;obcfgav Setup Registration&quot;</code> (<code>Access = Internal</code>)</strong> — not visible to other apps. <code>RegisterAll()</code> (retention policy, Assisted Setup entry, privacy notice), <code>PrivacyNoticeId(): Code[50]</code> (<code>OBCFGAV-ADDRESS</code>), <code>EnsurePrivacyNotice()</code> (creates the notice when missing; safe to call repeatedly).</p>
+<p><strong>Codeunit 92805 <code>&quot;obcfgav Http Transport Impl.&quot;</code> (<code>Access = Public</code>, implements the transport interface)</strong> — <code>Send(var Request: HttpRequestMessage; TimeoutMs: Integer; var HttpStatus: Integer; var ResponseBody: Text): Boolean</code>, <code>[NonDebuggable]</code>, no caller check. Sets the client timeout, sends, returns false when no HTTP response arrived (<code>HttpStatus</code> 0), otherwise fills status and body.</p>
+<p><strong>Interface <code>&quot;obcfgav Http Transport&quot;</code></strong> — <code>Send(var Request: HttpRequestMessage; TimeoutMs: Integer; var HttpStatus: Integer; var ResponseBody: Text): Boolean</code>.</p>
+<p><strong>Interface <code>&quot;obcfgav Address Provider&quot;</code></strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Procedure</th>
+<th>Signature</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ValidateAddress</code></td>
+<td><code>(var TempAddressBuffer: Record &quot;obcfgav Address Buffer&quot; temporary; Transport: Interface &quot;obcfgav Http Transport&quot;; TimeoutMs: Integer): Boolean</code> — true when validated; false when not found or the call failed (the buffer carries the user message)</td>
+</tr>
+<tr>
+<td><code>TestConnection</code></td>
+<td><code>(Transport: Interface &quot;obcfgav Http Transport&quot;; TimeoutMs: Integer; var ErrorText: Text): Boolean</code></td>
+</tr>
+<tr>
+<td><code>HasCredentials</code></td>
+<td><code>(): Boolean</code></td>
+</tr>
+<tr>
+<td><code>DisplayName</code></td>
+<td><code>(): Text</code></td>
+</tr>
+</tbody></table></div>
+<p>Implemented by internal codeunit 92807 <code>&quot;obcfgav Google Address Client&quot;</code>. Other apps can pass their own implementation to <code>SetProvider</code>, but only in a sandbox from the test app (§3.3).</p>
+<p><strong>Internal and local helpers</strong> (not callable from other apps). <em>1.1:</em> codeunit 92809 <code>&quot;obcfgav Address Source&quot;</code> (<code>GetMap</code>, <code>IsSupported</code>, <code>GetTableCaption</code>, <code>OpenSource</code>, <code>GetValue</code>, <code>GetLength</code>, <code>FillOriginal</code>, <code>DiffersFromSnapshot</code>, <code>AssignSuggested</code>, <code>SetCountryIfBlank(var SourceRecRef: RecordRef; AddressType; TempAddressBuffer): Boolean</code> (SC-4, 1.2; replaces <code>SetUsCountryIfBlank</code> of 1.1.0.12, FR-18.6: when the block&#39;s country is blank, assigns the Business Central code of the result region, else the region sent, directly, without field validation, and returns true; false when the country is not blank or no code is found; <code>AssignSuggested</code> calls it after the five values), <code>GetValidated</code>, <code>SetValidated</code>, <code>SaveSource(var SourceRecRef: RecordRef; AddressWritten: Boolean)</code>, <code>IsPrivacyBlocked(var SourceRecRef: RecordRef): Boolean</code>, <code>Describe</code>, and from 1.1.0.4 <code>ReadableSourceFilter(): Text</code>, which opens the 16 source tables once and returns the table numbers the user may read as a <code>|</code> filter, <code>0</code> when none; page 92802 uses it), codeunit 92813 <code>&quot;obcfgav Address Sync Subscr.&quot;</code> (<code>Init</code>, <code>OnRun</code>), codeunit 92808, codeunit 92810, codeunit 92811, codeunit 92812. The writer codeunit 92806 below is described as of 1.0.0.0; in 1.1 its <code>Init</code> no longer takes a customer number (<code>Init(NewOutcome; var TempResult; NewAccepted: Boolean; NewCanModify: Boolean)</code>), and <code>InsertLogEntry</code> no longer takes one either (<code>InsertLogEntry(LogResult; var TempResult; LogAccepted: Boolean)</code>); the identity travels in the buffer. Codeunit 92806 (1.0.0.0 signatures) <code>&quot;obcfgav Validation Writer&quot;</code> (<code>Access = Internal</code>): <code>OnRun</code> (writes the customer for Suggestion Accepted, sets Address Validated Yes for Confirmed, No for Not Found, then writes the log row), <code>Init(NewCustomerNo: Code[20]; NewOutcome: Enum &quot;obcfgav Validation Result&quot;; var TempResult: Record &quot;obcfgav Address Buffer&quot; temporary; NewAccepted: Boolean; NewCanModify: Boolean)</code>, <code>WasAddressChanged(): Boolean</code>, <code>InsertLogEntry(LogCustomerNo: Code[20]; LogResult: Enum &quot;obcfgav Validation Result&quot;; var TempResult: Record &quot;obcfgav Address Buffer&quot; temporary; LogAccepted: Boolean)</code>. Page 92803 <code>SetData(var TempAddressBuffer: Record &quot;obcfgav Address Buffer&quot; temporary; NewCanAccept: Boolean; NewAcceptBlockedReason: Text; ProviderName: Text)</code>.</p>
+<h3>3.3 Caller-check rules</h3>
+<ul>
+<li>The public procedures marked &quot;yes&quot; above begin with <code>NavApp.GetCallerModuleInfo(...)</code> followed by <code>CredentialMgt.CheckCallerAllowed(...)</code>. The caller module must be read inside the public procedure itself, never inside a helper, otherwise it would always name this app (stated in the code comment).</li>
+<li><code>CheckCallerAllowed</code> passes when the caller module id equals this app&#39;s id, or when the caller is the test app (id <code>ebe1c8ca-a413-4f2b-9de7-37d8c1ae4d5a</code>) <strong>and</strong> the environment is a sandbox (<code>Environment Information.IsSandbox()</code>). Anything else raises: &quot;This procedure can only be called by the Google Address Validator app.&quot;</li>
+<li>In production nothing but this app can change the transport or provider, run a check, test the connection, or store the key. The no-check procedures (<code>HasApiKey</code>, <code>ValuesDiffer</code>, <code>CanModifyCustomers</code>, <code>ProviderDisplayName</code>, the transport <code>Send</code>) are read-only or pure.</li>
+<li>Not covered: the check identifies the calling app, not the calling user. A user&#39;s rights over Customer data are enforced by standard Business Central permissions, not by this check.</li>
+<li>Not verified at runtime: nothing was installed or run, so the check has been compiled and read, not exercised (§8).</li>
+</ul>
+<h3>3.4 Customer table extension</h3>
+<p>Table extension 92800 <code>&quot;obcfgav Customer&quot;</code> extends Customer (table 18); page extension 92800 <code>&quot;obcfgav Customer Card&quot;</code> extends Customer Card.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>field 92800 <code>&quot;obcfgav Address Validated&quot;</code>, Boolean</td>
+</tr>
+<tr>
+<td>Caption / classification</td>
+<td><code>Address Validated</code> · <code>CustomerContent</code></td>
+</tr>
+<tr>
+<td>Properties</td>
+<td><code>InitValue = false</code>, <code>Editable = false</code></td>
+</tr>
+<tr>
+<td>Who sets it</td>
+<td>Only the extension: Yes on Confirmed or Suggestion Accepted (and, from 1.1.0.12, a blank country is filled in with the country Google found, else the region sent, at the same time (SC-4; 1.1.0.12 to 1.1.x used the setup&#39;s US code), which does not reset it); No on Not Found (for a user who can modify customers). Unchanged on Ignored, Error and when the user cannot modify customers.</td>
+</tr>
+<tr>
+<td>Reset on edit</td>
+<td><code>OnAfterValidate</code> triggers on Address, Address 2, City, County (State), Post Code and (from 1.1.0.4) Country/Region Code set it to No when the value differs from <code>xRec</code> and the flag was Yes. <strong>The country is part of the validated address:</strong> blank to the US code counts as a change, and so does a change that Business Central does not follow by clearing the address (General Ledger Setup <code>Req.Country/Reg. Code in Addr.</code> on). This supersedes the 1.0.0.0 rule that the country does not count. Writes that skip field validation (some imports and integrations) may not be detected.</td>
+</tr>
+<tr>
+<td>Card placement</td>
+<td>Field shown after Post Code on the Customer Card, read-only, tooltip explains the rules.</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td><strong>Validate Address</strong> (Functions group, promoted in Process; image Map): saves the record, commits, calls <code>ValidateCustomerAddress</code>, re-reads the customer, refreshes the page. <strong>Google Address Validation Log</strong> (under Customer): opens page 92802 filtered by <code>Customer No.</code>, newest first.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Version 1.1 changes to Customer.</strong> In addition to the 1.0.0.0 behaviour above: (a) a <code>Country/Region Code</code> <code>OnAfterValidate</code> trigger now runs the same comparison with the country included, so any country change resets Address Validated to No, whether or not Business Central clears City, State or ZIP (1.1.0.4; in 1.1.0.2 and 1.1.0.3 only a change that cleared the address did); (b) Privacy Blocked = Yes refuses the check; (c) a Confirmed or Not Found also runs the standard update of the linked Contact (<code>CustCont-Update.OnModify</code>; after the commit, failure swallowed), so the Contact&#39;s Last Date Modified and Change Log entries change, and only when the Contact&#39;s indicator actually differs from the Customer&#39;s; (d) the duplicate-contact form is suppressed during Accept; (e) a customer deleted while the dialog is open gives the generic <em>The Customer record no longer exists, so nothing was updated.</em> (the same message, with the table caption, for every source); (f) from 1.1.0.12 (FR-18.6, every source): a blank <code>Country/Region Code</code> is filled in with the setup&#39;s <code>US Country/Region Code</code> on Accept (inside <code>AssignSuggested</code>, part of the same write) and on Confirmed for a user who may modify the record (<code>SetAddressValidated</code> calls <code>SetUsCountryIfBlank</code>, then writes through <code>SaveSource</code> when the indicator or the country changed). The value is assigned directly, with no field validation, so the <code>OnAfterValidate</code> reset triggers do not run and Address Validated is not reset by it; for linked records the standard update copies the country. A non-blank country is never changed, Not Found never fills it in, and for Company Information the ship-to block fills the Ship-to country. All 1.0.0.0 message texts are unchanged.</p>
+<h3>3.4a Source table extensions and cards (1.1)</h3>
+<p>All 15 new table extensions follow the Customer pattern (§3.4): field 92800 <code>&quot;obcfgav Address Validated&quot;</code> (Boolean, caption <code>Address Validated</code>, <code>DataClassification = CustomerContent</code>, <code>InitValue = false</code>, <code>Editable = false</code>); <code>OnAfterValidate</code> triggers on Address, Address 2, City, County, Post Code and Country/Region Code that set it to No when any of the six address values (the country included, from 1.1.0.4) differs from <code>xRec</code> and the flag was Yes. Company Information has two blocks: the company fields reset field 92800, and Ship-to Address, Ship-to Address 2, Ship-to City, Ship-to County, Ship-to Post Code and (from 1.1.0.4) Ship-to Country/Region Code reset field 92801. Each page extension adds the read-only field (tooltip &quot;Specifies whether the current address was confirmed by, or accepted from, the address validation service. It is set by Validate Address and cleared when the address is edited.&quot;), the <strong>Validate Address</strong> action (image Map; promoted), and <strong>Address Validation Log</strong> (image Log; <code>RunPageLink</code> on <code>&quot;Source Table No.&quot;</code> = the table&#39;s ID and <code>&quot;Source SystemId&quot;</code> = <code>SystemId</code>, sorted newest first). The action is in the page&#39;s <code>Functions</code> group where it has one (Vendor, Employee, Contact, Resource, Customer), otherwise in <code>Processing</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Table (ID)</th>
+<th>Address / Address 2 / City / County / Post Code / Country field numbers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer (18), Ship-to Address (222), Vendor (23), Order Address (224), Remit Address (2224), Bank Account (270), Contact (5050)</td>
+<td>5 / 6 / 7 / 92 / 91 / 35</td>
+</tr>
+<tr>
+<td>Customer Bank Account (287), Vendor Bank Account (288)</td>
+<td>6 / 7 / 8 / 18 / 9 / 17</td>
+</tr>
+<tr>
+<td>Company Information (79), company block</td>
+<td>4 / 5 / 6 / 31 / 30 / 36</td>
+</tr>
+<tr>
+<td>Company Information (79), ship-to block</td>
+<td>24 / 25 / 26 / 33 / 32 / 37</td>
+</tr>
+<tr>
+<td>Location (14)</td>
+<td>5701 / 5702 / 5703 / 5715 / 5714 / 5720</td>
+</tr>
+<tr>
+<td>Responsibility Center (5714)</td>
+<td>3 / 4 / 5 / 15 / 6 / 7</td>
+</tr>
+<tr>
+<td>Employee (5200)</td>
+<td>8 / 9 / 10 / 12 / 11 / 25</td>
+</tr>
+<tr>
+<td>Alternative Address (5201), Contact Alt. Address (5051)</td>
+<td>5 / 6 / 7 / 9 / 8 / 14 (Alternative Address), 5 / 6 / 7 / 9 / 8 / 10 (Contact Alt. Address)</td>
+</tr>
+<tr>
+<td>Resource (156)</td>
+<td>6 / 7 / 8 / 54 / 53 / 59</td>
+</tr>
+</tbody></table></div>
+<p>The field numbers were checked against the Base Application 28.5 symbols; the code builds the same map with typed <code>FieldNo()</code> calls, so the compiler checks them. In every table the lengths are 100 / 50 / 30 / 30 / Code 20 / Code 10. County holds the State and Post Code holds the ZIP Code, as for Customer.</p>
+<h3>3.5 Tables and fields</h3>
+<p>All captions are the English (US) captions in the code. Field lengths are as declared.</p>
+<p><strong>Table 92800 <code>&quot;obcfgav Setup&quot;</code></strong> — caption &quot;Google Address Validation Setup&quot; (&quot;Address Validation Setup&quot; through 1.1.0.8), <code>DataClassification = CustomerContent</code>, primary key <code>PK</code> = Primary Key (clustered). One row per company, created on first open of the setup card.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Field</th>
+<th>Type</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Primary Key</td>
+<td>Code[10]</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Enabled</td>
+<td>Boolean</td>
+<td><code>InitValue = false</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Provider</td>
+<td>Enum <code>obcfgav Address Provider</code></td>
+<td><code>InitValue = Google</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>US Country/Region Code</td>
+<td>Code[10]</td>
+<td><code>TableRelation = &quot;Country/Region&quot;</code>. No initial value since 1.3.0.1 (it was <code>&#39;US&#39;</code>); asked in the Assisted Setup wizard; may be blank. Caption &quot;Default Country/Region Code&quot; since 1.2 (SC-4)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Blank Country Handling</td>
+<td>Enum <code>obcfgav Blank Country Handling</code></td>
+<td>SC-5, 1.2.0.3. Default (first value) is Let Google decide. Listed here in field-number order after 4 although it sits before field 5 in the source file</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Timeout (Seconds)</td>
+<td>Integer</td>
+<td><code>InitValue = 10</code>, <code>MinValue = 1</code>, <code>MaxValue = 60</code></td>
+</tr>
+</tbody></table></div>
+<p>The API key is <strong>not</strong> a field; it lives in isolated storage (§3.2).</p>
+<p><strong>Table 92801 <code>&quot;obcfgav Validation Log&quot;</code></strong> — caption &quot;Google Address Validation Log&quot; (&quot;Address Validation Log&quot; through 1.1.0.8), <code>DataClassification = CustomerContent</code>, lookup and drill-down page 92802. Keys: <code>PK</code> = Entry No. (clustered); <code>CustomerCheckedAt</code> = Customer No., Checked At; <em>(1.1)</em> <code>SourceCheckedAt</code> = Source Table No., Source SystemId, Checked At. Trigger <em>(1.1)</em>: <code>OnInsert</code> requires Source Table No., and requires Customer No. only when Source Table No. is the Customer table (in 1.0.0.0 it required Customer No. for every row). Rows are written with <code>Insert(true)</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Field</th>
+<th>Type</th>
+<th>Properties / caption</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Entry No.</td>
+<td>Integer</td>
+<td><code>AutoIncrement = true</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Customer No.</td>
+<td>Code[20]</td>
+<td><code>TableRelation = Customer.&quot;No.&quot;</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Checked At</td>
+<td>DateTime</td>
+<td>Filter field of the retention policy</td>
+</tr>
+<tr>
+<td>4</td>
+<td>User ID</td>
+<td>Code[50]</td>
+<td><code>DataClassification = EndUserIdentifiableInformation</code>, <code>TableRelation = User.&quot;User Name&quot;</code>, <code>ValidateTableRelation = false</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Result</td>
+<td>Enum <code>obcfgav Validation Result</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Accepted</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Original Address</td>
+<td>Text[100]</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Original Address 2</td>
+<td>Text[50]</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Original City</td>
+<td>Text[30]</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Original State</td>
+<td>Text[30]</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Original ZIP Code</td>
+<td>Code[20]</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Suggested Address</td>
+<td>Text[250]</td>
+<td>filled only for Confirmed and Suggestion Accepted</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Suggested Address 2</td>
+<td>Text[250]</td>
+<td>same</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Suggested City</td>
+<td>Text[250]</td>
+<td>same</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Suggested State</td>
+<td>Text[250]</td>
+<td>same</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Suggested ZIP Code</td>
+<td>Text[250]</td>
+<td>same</td>
+</tr>
+<tr>
+<td>17</td>
+<td>DPV Confirmation</td>
+<td>Code[10]</td>
+<td>caption &quot;Delivery Point Confirmation&quot;</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Validation Granularity</td>
+<td>Text[30]</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Next Action</td>
+<td>Text[30]</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Provider Message</td>
+<td>Text[2048]</td>
+<td>Google&#39;s text, or the error text</td>
+</tr>
+<tr>
+<td>21</td>
+<td>HTTP Status</td>
+<td>Integer</td>
+<td>0 = no response</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Provider</td>
+<td>Enum <code>obcfgav Address Provider</code></td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>Address Complete</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td>Source Table No. <em>(1.1)</em></td>
+<td>Integer</td>
+<td>Table number of the checked record, for example 23 for Vendor</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Address Type <em>(1.1)</em></td>
+<td>Enum <code>obcfgav Address Type</code></td>
+<td>Main, or Ship-to for the company&#39;s ship-to block</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Source SystemId <em>(1.1)</em></td>
+<td>Guid</td>
+<td>Inherits the table&#39;s <code>CustomerContent</code> (it was <code>SystemMetadata</code> in 1.1.0.0 to 1.1.0.3; changed in 1.1.0.4 because it keys a person&#39;s record). The checked record&#39;s system ID; it survives a rename</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Source Description <em>(1.1)</em></td>
+<td>Text[250]</td>
+<td>Caption &quot;Source&quot;. Table caption plus the key values, for example <code>Vendor 10000</code>; for the ship-to block the type is appended, as <code>&lt;description&gt; (&lt;type&gt;)</code>, for example <code>Company Information (Ship-to)</code>. <strong>Never contains a name.</strong> It is stored text, written in the language of the user who ran the check, and is not re-translated later</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Source Table Caption <em>(1.1)</em></td>
+<td>Text[249]</td>
+<td>FlowField, read-only: the caption of the source table (<code>AllObjWithCaption</code>)</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Record No. <em>(1.1.0.10)</em></td>
+<td>Text[100]</td>
+<td>Caption &quot;Record No.&quot;. The number or key of the checked record: the non-blank parts of its first key, joined with &quot; / &quot; (for example <code>10000</code>, <code>C00010 / MAIN</code>); blank for Company Information. Written by the Validation Writer from the buffer; filled on old rows by the upgrade codeunit 92814 (§7). Never a name</td>
+</tr>
+</tbody></table></div>
+<p>Field 2 <code>Customer No.</code> is filled only for checks of a Custome</section><section class="panel" id="panel-google-setup" role="tabpanel" hidden><h1>Google Setup</h1><p><strong>As of:</strong> October 17, 2026. Google&#39;s pages and prices were read on 2026-10-17 (most were last updated by Google on 2026-10-15). Console screens and prices change; where this guide says &quot;read on&quot;, the source is named so you can recheck it.
+<strong>Applies to:</strong> Google Address Validator 0.0.0.7 and later; the current build is 1.3.0.0. This guide covers only the Google side; installing the package is covered in the deployment guide in the repository.</p>
+<h2>What you need, in one line</h2>
+<p><strong>One value: a Google Maps Platform API key</strong> from a Google Cloud project that has <strong>billing turned on</strong> and the <strong>Address Validation API enabled</strong>. You paste that key into Business Central. Nothing else from Google goes into the extension.</p>
+<p>You do <strong>not</strong> need: a client ID or secret, OAuth, a service account, a JSON key file, a USPS account, a Google Maps JavaScript key, or any other Google API. The extension sends one request per address check to Google&#39;s Address Validation API and nothing else.</p>
+<h2>Cost, in plain words</h2>
+<ul>
+<li>The API is pay-as-you-go. The extension uses the <strong>Address Validation Pro</strong> price: <strong>5,000 free requests a month</strong>, then <strong>$17.00 per 1,000</strong> up to 100,000 a month (read on 2026-10-17: <a href="https://developers.google.com/maps/billing-and-pricing/pricing">https://developers.google.com/maps/billing-and-pricing/pricing</a>, last updated by Google 2026-10-15). At your stated volume (under 1,000 checks a month) the expected cost is <strong>$0</strong>.</li>
+<li><strong>One price for every country.</strong> Address Validation Pro costs the same in all 40 countries the extension supports (from 1.2), and the 5,000 free requests a month are shared by all countries and all users of the key. Google gives a higher free allowance (35,000 a month) only to billing accounts that are billed at India pricing; that depends on your Google billing account, not on the country of the address, and no separate API key is needed for India (figures from the FRD and Google&#39;s documentation; recheck the price page). Only the United States and Puerto Rico return USPS delivery data. The list of countries Google covers was read on 2026-10-18: <a href="https://developers.google.com/maps/documentation/address-validation/coverage">https://developers.google.com/maps/documentation/address-validation/coverage</a>.</li>
+<li>Google still requires a <strong>billing account with a payment method</strong> even when you stay inside the free allowance.</li>
+<li>The extension&#39;s <strong>Test Connection</strong> is designed to cost nothing (an intentionally incomplete request). Check Google&#39;s billing report after your first test to confirm.</li>
+<li>Google&#39;s pricing page says changes to &quot;discounts and credits&quot; are coming; recheck the price page before go-live.</li>
+</ul>
+<h2>Step 1. Sign in with a Google account</h2>
+<ol>
+<li>Use a Google account that your company controls (not a personal one if the project should outlive you). A Google Workspace account is the usual choice.</li>
+<li>Sign in at <a href="https://console.cloud.google.com/">https://console.cloud.google.com/</a>. Accept the Google Cloud terms if asked. If you are in the European Economic Area, Google notes that the EEA Terms of Service apply from 8 July 2025.</li>
+</ol>
+<h2>Step 2. Set up billing (this is the sign-up that needs a payment method)</h2>
+<p>Pick <strong>one</strong> of these paths.</p>
+<p><strong>A. You have never used Google Cloud, Google Maps Platform or Firebase as a paying customer (new customer)</strong></p>
+<ol>
+<li>In the console, use the <strong>Activate</strong> / <strong>Start free</strong> prompt (or go to <a href="https://cloud.google.com/free">https://cloud.google.com/free</a>).</li>
+<li>Provide a credit card or other valid payment method. Depending on your country you may also have to verify a bank account.</li>
+<li>Google places a temporary authorization hold, typically $0.00 to $1.00, released within days to a month. It is not a charge.</li>
+<li>You get the <strong>Free Trial</strong>: a <strong>$300 credit for 90 days</strong>, plus the Free Tier&#39;s monthly limits. The trial ends when you upgrade to a paid billing account, spend the credit, or 90 days pass. <strong>If the trial closes without an upgrade, your resources are stopped and permanently deleted after a 30-day grace period</strong>, so upgrade to a <strong>Paid billing account</strong> (console: <strong>Billing</strong>) before the 90 days end, or the API key will stop working. The trial cannot request quota increases. (Source, read 2026-10-17: <a href="https://docs.cloud.google.com/free/docs/free-cloud-features">https://docs.cloud.google.com/free/docs/free-cloud-features</a>)</li>
+</ol>
+<p><strong>B. You already have a paying Google Cloud / Maps Platform billing account</strong></p>
+<ol>
+<li>Use it. You need a role on it that lets you link projects: <strong>Billing Account User</strong> (<code>roles/billing.user</code>) together with <strong>Project Creator</strong>, or ask the person who owns billing to do Step 3 with you.</li>
+</ol>
+<p>Write down which billing account you used. You will need to choose it in Step 3.</p>
+<h2>Step 3. Create a Google Cloud project just for this extension</h2>
+<p>Use a <strong>new, dedicated project</strong> (for example &quot;BC Address Validation&quot;). A dedicated project keeps the key, quota, budget and bill for this one use, and makes rotating or deleting it safe.</p>
+<ol>
+<li>Console → <strong>Manage resources</strong> page → <strong>Create project</strong>.</li>
+<li>Enter a project name and select the <strong>billing account</strong> from Step 2. (You can only select a billing account if you hold the <strong>Billing Account User</strong> role; otherwise link it afterwards.)</li>
+<li>Leave the parent as <strong>No organization</strong>, or choose your organization or folder.</li>
+<li>Choose <strong>Create</strong>. You need the <strong>Project Creator</strong> permission (<code>resourcemanager.projects.create</code>), which new free-trial users and new organizations have by default.</li>
+<li>Confirm the project is linked to billing (console <strong>Billing</strong> page shows the project under the account). (Source, read 2026-10-17: <a href="https://docs.cloud.google.com/resource-manager/docs/creating-managing-projects">https://docs.cloud.google.com/resource-manager/docs/creating-managing-projects</a>)</li>
+</ol>
+<h2>Step 4. Enable the Address Validation API on that project</h2>
+<ol>
+<li>Make sure the new project is the selected project in the console&#39;s project picker.</li>
+<li>Open the Google Maps Platform in the console (<a href="https://console.cloud.google.com/google/maps-apis">https://console.cloud.google.com/google/maps-apis</a>), find <strong>Address Validation API</strong> in the API library, and choose <strong>Enable</strong>.</li>
+<li>If the API is not listed, enable it from the API library by searching for &quot;Address Validation API&quot;. Google&#39;s note: an API that is not enabled cannot be added to a key&#39;s restrictions. (Source: <a href="https://developers.google.com/maps/documentation/address-validation/cloud-setup">https://developers.google.com/maps/documentation/address-validation/cloud-setup</a>)</li>
+</ol>
+<p>If this step is skipped, Business Central will later show: <em>The Address Validation API is not enabled in the Google Cloud project of this API key. Contact your administrator.</em></p>
+<h2>Step 5. Create the API key and restrict it</h2>
+<ol>
+<li>Console → <strong>Google Maps Platform</strong> → <strong>Credentials</strong> (also reachable from <strong>APIs &amp; Services → Credentials</strong>).</li>
+<li>Choose <strong>Create credentials → API key</strong>. Copy the key when it appears; it looks like a string of about 39 characters starting with <code>AIza</code>.</li>
+<li>Open the new key (<strong>Edit API key</strong>) and, under <strong>API restrictions</strong>, choose <strong>Restrict key</strong>, open <strong>Select APIs</strong>, choose <strong>only Address Validation API</strong>, and <strong>Save</strong>. (Source, read 2026-10-17: <a href="https://developers.google.com/maps/api-security-best-practices">https://developers.google.com/maps/api-security-best-practices</a>)</li>
+<li><strong>Application restriction (IP addresses):</strong> Google recommends restricting server-side keys by IP address, but the addresses must match the source IP Google sees, and Google itself notes this is impractical for cloud environments with dynamic IPs. Business Central online runs the call from Microsoft&#39;s datacenters and does not give you a fixed address you control, so <strong>do not set an IP restriction unless you have confirmed the addresses</strong> (a wrong IP restriction makes every check fail with a &quot;key not allowed&quot; error). The API restriction in step 3 plus the quota cap and budget alert below are the protections this project relies on. This is a judgement, not something verified against your environment: if your Business Central environment calls out through a fixed-IP proxy, restrict to that IP.</li>
+<li>Give the key a recognisable name (for example &quot;BC address validation&quot;) so you can tell it apart later.</li>
+<li>Keep the key secret: do not email or paste it into chat. It authorises billable requests on your project.</li>
+</ol>
+<h2>Step 6. Set a daily quota cap (the one setting that actually stops spending)</h2>
+<p>A <strong>budget alert only warns; it does not stop spending</strong>. A <strong>quota cap</strong> makes the API stop answering when reached.</p>
+<ol>
+<li>Console → <strong>Google Maps Platform → Quotas</strong>.</li>
+<li>Select <strong>Address Validation API</strong>, find the daily quota for validation requests, choose <strong>Edit</strong>, enter a limit (for example <strong>100 per day</strong>, which is far above your expected volume), and choose <strong>Submit request</strong>. Review requests under <strong>Increase Requests</strong>. (Source, read 2026-10-17: <a href="https://developers.google.com/maps/documentation/address-validation/usage-and-billing">https://developers.google.com/maps/documentation/address-validation/usage-and-billing</a>)</li>
+<li>Google&#39;s default limit is 6,000 queries per minute; when a quota is reached &quot;your service stops responding&quot;. Business Central then shows: <em>The Google Maps request limit has been reached. Try again later.</em></li>
+</ol>
+<h2>Step 7. Set a budget alert (so you find out about unexpected cost)</h2>
+<ol>
+<li>Console → <strong>Billing → Budgets &amp; alerts</strong> (under Cost management) → <strong>Create budget</strong>.</li>
+<li>Choose <strong>Alerts only</strong>, give it a name, and choose <strong>Next</strong>.</li>
+<li>Scope: select the project from Step 3 (and optionally the service Maps Platform). Time range: <strong>monthly</strong>.</li>
+<li>Amount: <strong>Specified amount</strong>, for example <strong>$1</strong> (your expected spend is $0, so any charge is worth knowing about).</li>
+<li>Keep the default thresholds (50%, 90%, 100% of <strong>Actual</strong> spend) and make sure someone who reads email is a recipient (billing administrators are notified by default).</li>
+<li><strong>Finish.</strong> You need the <strong>Billing Account Administrator</strong> or <strong>Billing Account Costs Manager</strong> role, or project-level billing permissions. Google notes alerts can arrive <strong>hours</strong> late because usage reporting is delayed. (Source, read 2026-10-17: <a href="https://docs.cloud.google.com/billing/docs/how-to/budgets">https://docs.cloud.google.com/billing/docs/how-to/budgets</a>)</li>
+</ol>
+<h2>Step 8. Put the key into Business Central</h2>
+<ol>
+<li>Install the extension and assign yourself <strong>OBCFGAV GAV, ADMIN</strong> (permission set name from the code).</li>
+<li>Search <strong>Assisted Setup</strong> → <strong>Set up Google address validation</strong>; on the key step paste the <strong>API key</strong> from Step 5 and choose <strong>Finish</strong>. Or open <strong>Address Validation Setup</strong> and paste it in the <strong>API Key</strong> field under <strong>Google Maps</strong>.
+<img src="screenshots/wizard-2-api-key.png" alt="Wizard, API key step"></li>
+<li>On <strong>Google Address Validation Setup</strong>: turn <strong>Enabled</strong> on; leave <strong>Provider</strong> (Google Maps, read-only); check <strong>Blank Country Handling</strong> (<strong>Let Google decide</strong>, the default, works the country out of a record with a blank Country/Region Code; choose <strong>Use default country</strong> if you only check one country) and leave <strong>Default Country/Region Code</strong> as <code>US</code> (it is the country used for a blank-country record under Use default country; a country guessed as US or Canada that is not found costs a second request); leave <strong>Timeout</strong> at 10 seconds. Then open <strong>Supported Countries</strong> from the setup page (or search for <strong>Google Address Validation Supported Countries</strong>): all 40 countries are switched on after install and upgrade, so <strong>switch off the countries whose addresses you do not want sent to Google</strong> before users start validating. This matters most for employee and contact addresses outside the United States.</li>
+<li>Choose <strong>Test Connection</strong>. The first time, Business Central shows a <strong>privacy notice</strong> for sending addresses to Google; an administrator&#39;s Agree applies to everyone. (The notice&#39;s platform text says data is shared with &quot;Microsoft services&quot;; that text cannot be changed by the extension, and the Google privacy link it points to is not yet confirmed — Roadmap R-12-1.)
+<img src="screenshots/test-connection-ok.png" alt="Test Connection succeeded"></li>
+<li>Expected result: <em>The connection to Google Maps works. The API key was accepted.</em></li>
+<li>The key cannot be read back after you save it. If you lose it, create a new one in Step 5 and paste it again.</li>
+</ol>
+<p>Also check that <strong>Allow HttpClient Requests</strong> is on for the extension in the environment (Business Central Admin Center / Extension Management). Its default can differ between environments, so check it.</p>
+<h2>Step 9. Make a real check</h2>
+<ol>
+<li>Open a customer with a real address in a supported country, choose <strong>Validate Address</strong> on the Customer Card.</li>
+<li>Use <strong>real addresses only</strong>. Google&#39;s terms forbid sending made-up or artificially created addresses to the service. Brazil, Mexico, India (preview) and Japan (preview) are switched on but their results have not been seen: try a few real addresses in each country you rely on before depending on it.</li>
+<li>Record what you see against the &quot;live Google&quot; checklist in the HumanUnitTestScript (TDD §14.y): that the key header is accepted, the error wording for a bad key and a disabled API, and that Test Connection costs nothing in the billing report.</li>
+</ol>
+<h2>When something goes wrong</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Business Central says</th>
+<th>Most likely cause</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Maps rejected the API key. Contact your administrator.</td>
+<td>Key typed wrongly, deleted, or from the wrong project</td>
+<td>Create or copy the key again (Step 5), paste it again</td>
+</tr>
+<tr>
+<td>The Address Validation API is not enabled in the Google Cloud project of this API key.</td>
+<td>Step 4 skipped, or key belongs to another project</td>
+<td>Enable the API on the project that owns the key</td>
+</tr>
+<tr>
+<td>Billing is not enabled for the Google Cloud project of this API key.</td>
+<td>Step 2/3 not completed, or the free trial ended</td>
+<td>Link a paid billing account to the project</td>
+</tr>
+<tr>
+<td>The API key is not allowed to call the Address Validation API. Check the key&#39;s restrictions.</td>
+<td>API restriction excludes Address Validation, or an IP restriction does not match</td>
+<td>Edit the key (Step 5); remove the IP restriction if unsure</td>
+</tr>
+<tr>
+<td>The Google Maps request limit has been reached. Try again later.</td>
+<td>Your daily cap (Step 6) was reached</td>
+<td>Wait, or raise the cap</td>
+</tr>
+<tr>
+<td>Google Maps is not responding. Try again later.</td>
+<td>Network or Google outage, or HttpClient requests are off</td>
+<td>Check <strong>Allow HttpClient Requests</strong>; retry later</td>
+</tr>
+</tbody></table></div>
+<h2>Rotating the key (if it leaks, or on a schedule)</h2>
+<ol>
+<li>Console → <strong>Google Maps Platform → Credentials</strong> → open the key → <strong>Rotate key</strong>. The new key keeps the old key&#39;s restrictions and <strong>both keys work during the transition</strong>.</li>
+<li>Paste the new key into Business Central (Step 8).</li>
+<li>Confirm checks work, then choose <strong>Delete the previous key</strong> under <strong>Previous Key</strong>. (Source, read 2026-10-17: <a href="https://developers.google.com/maps/api-security-best-practices">https://developers.google.com/maps/api-security-best-practices</a>)</li>
+<li>This replaces the old 72-hour USPS incident duty: there is no such duty for this Google setup; rotating the key is the response to a suspected leak.</li>
+</ol>
+<h2>Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Billing account with a payment method; trial upgraded to <strong>Paid</strong> before it expires</li>
+<li><input disabled="" type="checkbox"> Dedicated project created and linked to billing</li>
+<li><input disabled="" type="checkbox"> Address Validation API enabled</li>
+<li><input disabled="" type="checkbox"> API key created, restricted to <strong>Address Validation API only</strong>, copied somewhere safe</li>
+<li><input disabled="" type="checkbox"> Daily quota cap set (Step 6)</li>
+<li><input disabled="" type="checkbox"> Budget alert set with an email recipient (Step 7)</li>
+<li><input disabled="" type="checkbox"> Key pasted in Business Central, <strong>Enabled</strong> on, privacy notice answered, <strong>Test Connection</strong> passed</li>
+<li><input disabled="" type="checkbox"> <strong>Allow HttpClient Requests</strong> on</li>
+<li><input disabled="" type="checkbox"> One real address checked end to end</li>
+</ul>
+
+</section></div></main>
+
+<footer>
+  <div class="wrap">
+    <a href="https://github.com/ajansari/GoogleAddressValidator">github.com/ajansari/GoogleAddressValidator</a>
+    <span>Created by AJ Ansari · Microsoft MVP</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var diagramsDone = false;
+
+  var initial = true;
+  function show(key, scrollTarget) {
+    if (!document.getElementById('panel-' + key)) key = 'user-guide';
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === key)); });
+    panels.forEach(function (p) { p.hidden = p.id !== 'panel-' + key; });
+    if (key === 'documentation') renderDiagrams();
+    if (scrollTarget) {
+      var el = document.getElementById(scrollTarget);
+      if (el) el.scrollIntoView();
+    } else {
+      if (!initial) window.scrollTo(0, document.querySelector('nav.tabs').offsetTop);
+    }
+  }
+
+  function renderDiagrams() {
+    if (diagramsDone || !window.mermaid) return;
+    diagramsDone = true;
+    try {
+      window.mermaid.initialize({ startOnLoad: false, theme: 'neutral', er: { useMaxWidth: false } });
+      window.mermaid.run({ querySelector: 'pre.mermaid' });
+    } catch (e) { /* the diagram text stays visible */ }
+  }
+
+  function fromHash() {
+    var h = decodeURIComponent(location.hash.slice(1));
+    if (!h) return show('user-guide');
+    var dash = h.indexOf('-');
+    var key = ['user-guide', 'documentation', 'google-setup'].filter(function (k) { return h === k || h.indexOf(k + '-') === 0; })[0];
+    if (key) show(key, h === key ? null : h);
+    else show('user-guide');
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { history.replaceState(null, '', '#' + t.dataset.tab); show(t.dataset.tab); });
+  });
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+  initial = false;
+})();
+</script>
+</body>
+</html>
