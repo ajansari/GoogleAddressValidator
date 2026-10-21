@@ -614,3 +614,10 @@ Old → new object IDs:
 **Resolution:** `index.html`, `template.html`, `build.py` and `assets/` moved from `help/` straight into `docs/` (`git mv`); `help/` no longer exists, so the project root is back to the Operating Rule 9 layout. `docs/build.py` finds the repository root one level up (`python3 docs/build.py`). With Pages on `main` / `/docs` the page is the site root, so `app.json` `help` is now `https://ajansari.github.io/GoogleAddressValidator/` (it was `.../help/`). Version 1.3.0.3 (1.3.0.2 would have carried the old link), compiled 0 errors, 0 warnings; the manifest `Help` and `Url` were read back from the package. Nothing installed. Earlier entries name the old paths.
 **Files affected:** docs/index.html, docs/template.html, docs/build.py, docs/assets/, app.json, README, Deployment, SandboxInstall.
 **Updated:** TDD — no; FRD — no.
+
+## Issue DOC-FAQ — FAQ tab added to the help site
+**Problem:** The help site had no FAQ tab; its questions sat in User Guide section 6.
+**Root cause:** The site was built before the FAQ tab existed.
+**Resolution:** Wrote `docs/4-prove/FAQ.md` (30 questions, from the User Guide, Google Setup guide and message table; nothing invented). `docs/build.py` adds an FAQ tab with collapsible questions and leaves User Guide section 6 out of the page (the Markdown keeps it). `docs/template.html` gained the `.faq` styles. Drafted by the Main model; no sub-agent.
+**Files affected:** docs/4-prove/FAQ.md, docs/build.py, docs/template.html, docs/index.html.
+**Updated:** TDD, FRD — no.

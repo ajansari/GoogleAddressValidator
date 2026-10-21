@@ -8,6 +8,7 @@ app = json.loads((root / "app.json").read_text())
 SRC = {
     "user-guide": ("User Guide", "docs/4-prove/UserGuide.md"),
     "documentation": ("Documentation", "docs/4-prove/Documentation.md"),
+    "faq": ("FAQ", "docs/4-prove/FAQ.md"),
     "google-setup": ("Google Setup", "docs/4-prove/GoogleSetupGuide.md"),
 }
 
@@ -36,6 +37,8 @@ SUBS = [
 ]
 
 def clean(text, key):
+    if key == "user-guide":                                                # its FAQ section is the FAQ tab
+        text = re.sub(r"^## \d+\. Frequently asked questions.*?(?=^## )", "", text, flags=re.M | re.S)
     text = re.sub(r"\A# .*\n", "", text)                                   # own title is in the page header
     text = re.sub(r"\A(\s*\*\*(Version|Written for):\*\*.*\n)+", "", text)  # build/author meta lines
     text = re.sub(r"^> \*\*Where this build stands:\*\*.*\n", "", text, flags=re.M)
@@ -52,6 +55,9 @@ for key, (title, path) in SRC.items():
     body = md(clean((root / path).read_text(), key)).replace('../screenshots/', 'screenshots/')
     body = re.sub(r'<pre><code class="language-mermaid">(.*?)</code></pre>',
                   lambda m: '<pre class="mermaid">' + m.group(1) + "</pre>", body, flags=re.S)
+    if key == "faq":                                                       # collapsible questions
+        body = re.sub(r'<h3[^>]*>(.*?)</h3>\s*(.*?)(?=<h3|<h2|\Z)',
+                      lambda m: f'<details class="faq"><summary>{m.group(1)}</summary>{m.group(2)}</details>', body, flags=re.S)
     body = re.sub(r"<table>", '<div class="table-wrap"><table>', body).replace("</table>", "</table></div>")
     body = re.sub(r'<h([23]) id="([^"]+)">', lambda m: f'<h{m.group(1)} id="{key}-{m.group(2)}">', body)
     sections[key] = body

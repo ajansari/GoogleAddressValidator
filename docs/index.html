@@ -70,6 +70,9 @@ pre.mermaid { overflow-x: auto; background: var(--surface); border: 1px solid va
 pre.mermaid svg { max-width: none; height: auto; }
 blockquote { margin: 1.2em 0; padding: 12px 18px; background: var(--teal-bg); border-left: 4px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; }
 blockquote p { margin: .3em 0; }
+.faq { border: 1px solid var(--line); border-radius: var(--radius); margin: 8px 0; padding: 0 16px; background: #fff; }
+.faq summary { cursor: pointer; font-weight: 600; padding: 14px 0; }
+.faq[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 8px; }
 .table-wrap { overflow-x: auto; margin: 1.2em 0; border: 1px solid var(--line); border-radius: var(--radius); }
 table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 th { text-align: left; background: #efeee8; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
@@ -129,7 +132,7 @@ img.banner { display: block; width: 100%; height: auto; border-radius: var(--rad
 
 <div class="wrap bannerwrap"><a href="https://github.com/ajansari/GoogleAddressValidator"><img class="banner" src="assets/banner.png" alt="Google Address Validator for Business Central: fix the typo, ship the right address. One click on a card checks an address in 40 countries with Google Maps."></a></div>
 
-<nav class="tabs" aria-label="Help sections"><div class="wrap" role="tablist"><button class="tab" role="tab" data-tab="user-guide" aria-selected="false">User Guide</button><button class="tab" role="tab" data-tab="documentation" aria-selected="false">Documentation</button><button class="tab" role="tab" data-tab="google-setup" aria-selected="false">Google Setup</button></div></nav>
+<nav class="tabs" aria-label="Help sections"><div class="wrap" role="tablist"><button class="tab" role="tab" data-tab="user-guide" aria-selected="false">User Guide</button><button class="tab" role="tab" data-tab="documentation" aria-selected="false">Documentation</button><button class="tab" role="tab" data-tab="faq" aria-selected="false">FAQ</button><button class="tab" role="tab" data-tab="google-setup" aria-selected="false">Google Setup</button></div></nav>
 
 <main><div class="wrap"><section class="panel" id="panel-user-guide" role="tabpanel" hidden><h1>User Guide</h1><blockquote>
 <p><strong>Version 1.3.0.3.</strong> Works on 16 cards (Customer plus 15 more master-data cards) in the 40 countries Google covers. Version 1.0.0.0 and 1.2.0.4 passed the manual release test in a sandbox.</p>
@@ -937,35 +940,6 @@ Version 1.2 checks addresses in the 40 countries and regions that Google&#39;s A
 <td>Report the text to your administrator.</td>
 </tr>
 </tbody></table></div>
-<h2>6. Frequently asked questions</h2>
-<p><strong>Q.</strong> Does the extension change my customer&#39;s address by itself?
-<strong>A.</strong> Never. The address changes only when you choose <strong>OK</strong> in the suggestion window.</p>
-<p><strong>Q.</strong> Are the customer&#39;s name or number sent to Google?
-<strong>A.</strong> No. Only the address, city, state and ZIP / postal code are sent, together with the two-letter country code when the record&#39;s country is known.</p>
-<p><strong>Q.</strong> Does it cost money?
-<strong>A.</strong> Each check is one request on your company&#39;s own Google Cloud project (two when a guessed country for a record without a country fails and the check is repeated, section 4.12). Google&#39;s free allowance (5,000 requests a month, shared by all countries; a billing account on India pricing gets 35,000) covers low volume, then it is about $17 per 1,000 (section 4.12). Your administrator should have a daily cap and a budget alert set there.</p>
-<p><strong>Q.</strong> Can I check an address outside the United States?
-<strong>A.</strong> Yes, from version 1.2, in the 40 countries on the Supported Countries page (section 4.12), unless an administrator switched the country off.</p>
-<p><strong>Q.</strong> Can I validate all my customers at once?
-<strong>A.</strong> No. This version works one record at a time, on request.</p>
-<p><strong>Q.</strong> Why is Address Validated switched off again?
-<strong>A.</strong> Someone edited the address after it was validated, someone changed the Country/Region Code (even from blank to the US code), or a later check could not confirm it (section 4.4). On a contact, employee or other linked record it can also follow the record it is linked to (section 4.8).</p>
-<p><strong>Q.</strong> Can I check a Ship-to Address, vendor or contact?
-<strong>A.</strong> Yes, from version 1.1. The cards are listed in section 3.1. Sales documents, purchase documents, lists and the other tables in section 4.10 cannot be checked.</p>
-<p><strong>Q.</strong> I validated a vendor. Why did its contact change as well?
-<strong>A.</strong> Business Central keeps a vendor&#39;s contact in step with the vendor, and the extension keeps the <strong>Address Validated</strong> field in step too (section 4.8).</p>
-<p><strong>Q.</strong> Why does Validate Address say the record is blocked due to privacy?
-<strong>A.</strong> <strong>Privacy Blocked</strong> is on for it or for the customer, vendor, employee or contact it belongs to (section 4.9).</p>
-<p><strong>Q.</strong> I validated the company address. Why is the ship-to address still not validated?
-<strong>A.</strong> They are checked separately (section 4.7).</p>
-<p><strong>Q.</strong> Why does the Google Address Validation Log not show entries I know exist?
-<strong>A.</strong> The log shows you only the entries of the kinds of record you may read yourself (section 4.5). Ask your administrator if you need to see more.</p>
-<p><strong>Q.</strong> I deleted a record. Why is its entry still in the log?
-<strong>A.</strong> The log keeps the record&#39;s key and address until the Retention Policy deletes the row (section 4.5).</p>
-<p><strong>Q.</strong> Why can I see the suggestion but not accept it?
-<strong>A.</strong> Accepting needs permission to modify customers. The reason line in the window tells you.</p>
-<p><strong>Q.</strong> Why does a note say &quot;USPS&quot;?
-<strong>A.</strong> Google&#39;s answer includes US Postal Service delivery data for addresses in the United States and Puerto Rico; the wording of those notes comes from that data. Other countries do not have it.</p>
 <h2>7. Getting help</h2>
 <p>Contact your Business Central administrator. Include the customer number, the time of the check, the exact message you saw, and the matching line from the <strong>Google Address Validation Log</strong> (its <strong>Provider Message</strong> and <strong>HTTP Status</strong> columns). Administrators can find installation, Google Cloud and permission details in the Google Setup section and the deployment guide in the repository.</p>
 <p>The Google Address Validation Log is cleaned up by Business Central&#39;s Retention Policy, which an administrator must switch on (it starts switched off). The planned retention is 2 years.</p>
@@ -2013,7 +1987,45 @@ Version 1.2 checks addresses in the 40 countries and regions that Google&#39;s A
 <td>Caption &quot;Record No.&quot;. The number or key of the checked record: the non-blank parts of its first key, joined with &quot; / &quot; (for example <code>10000</code>, <code>C00010 / MAIN</code>); blank for Company Information. Written by the Validation Writer from the buffer; filled on old rows by the upgrade codeunit 92814 (§7). Never a name</td>
 </tr>
 </tbody></table></div>
-<p>Field 2 <code>Customer No.</code> is filled only for checks of a Custome</section><section class="panel" id="panel-google-setup" role="tabpanel" hidden><h1>Google Setup</h1><p><strong>As of:</strong> October 17, 2026. Google&#39;s pages and prices were read on 2026-10-17 (most were last updated by Google on 2026-10-15). Console screens and prices change; where this guide says &quot;read on&quot;, the source is named so you can recheck it.
+<p>Field 2 <code>Customer No.</code> is filled only for checks of a Custome</section><section class="panel" id="panel-faq" role="tabpanel" hidden><h1>FAQ</h1><blockquote>
+<p>Every answer here comes from the User Guide, the Google Setup guide, or the messages the extension shows. Section numbers refer to the User Guide.</p>
+</blockquote>
+<h2>Using the extension</h2>
+<details class="faq"><summary>Does the extension change my customer&#39;s address by itself?</summary><p>Never. The address changes only when you choose <strong>OK</strong> in the suggestion window.</p>
+</details><details class="faq"><summary>Which data is sent to Google?</summary><p>Only the address, city, state and ZIP / postal code, together with the two-letter country code when the record&#39;s country is known. The customer&#39;s name and number are not sent.</p>
+</details><details class="faq"><summary>Can I validate all my customers at once?</summary><p>No. This version works one record at a time, on request. It is for interactive use only, not for scheduled jobs or integrations.</p>
+</details><details class="faq"><summary>Which records can I check?</summary><p>The Customer Card and 15 more cards: Ship-to Address, Customer Bank Account, Vendor, Order Address, Remit Address, Vendor Bank Account, Company Information (the company address and the ship-to address), Location, Responsibility Center, Bank Account, Employee, Alternative Address, Contact, Contact Alternative Address and Resource. Sales documents, purchase documents, lists and the other tables in section 4.10 cannot be checked.</p>
+</details><details class="faq"><summary>Can I check an address outside the United States?</summary><p>Yes, in the 40 countries on the Supported Countries page (section 4.12), unless an administrator switched the country off. A country Google does not cover, such as Russia, is refused before anything is sent.</p>
+</details><details class="faq"><summary>What happens if the record has no Country/Region Code?</summary><p>It depends on the <strong>Blank Country Handling</strong> setting (section 4.12). By default Google works the country out from the address, and a blank Country/Region Code is filled in from the country Google found.</p>
+</details><details class="faq"><summary>Why is Address Validated switched off again?</summary><p>Someone edited the address after it was validated, someone changed the Country/Region Code (even from blank to the US code), or a later check could not confirm it (section 4.4). On a contact, employee or other linked record it can also follow the record it is linked to (section 4.8).</p>
+</details><details class="faq"><summary>I validated a vendor. Why did its contact change as well?</summary><p>Business Central keeps a vendor&#39;s contact in step with the vendor, and the extension keeps the <strong>Address Validated</strong> field in step too (section 4.8).</p>
+</details><details class="faq"><summary>I validated the company address. Why is the ship-to address still not validated?</summary><p>They are checked separately (section 4.7).</p>
+</details><details class="faq"><summary>Why does a note say &quot;USPS&quot;?</summary><p>Google&#39;s answer includes US Postal Service delivery data for addresses in the United States and Puerto Rico. Other countries do not have it.</p>
+</details><h2>Permissions and the log</h2>
+<details class="faq"><summary>Which permissions do I need?</summary><p>To validate addresses you need the <code>OBCFGAV GAV, USE</code> permission set. To set the extension up or enter the API key you need <code>OBCFGAV GAV, ADMIN</code>. Your administrator assigns them on the <strong>Users</strong> page (section 2).</p>
+</details><details class="faq"><summary>Why can I see the suggestion but not accept it?</summary><p>Accepting needs permission to modify the kind of record you are checking, for example customers. The reason line in the window tells you. Ask your administrator for modify permission on that table.</p>
+</details><details class="faq"><summary>Why does Validate Address say the record is blocked due to privacy?</summary><p><strong>Privacy Blocked</strong> is on for the record, or for the customer, vendor, employee or contact it belongs to (section 4.9). Nothing was sent or logged.</p>
+</details><details class="faq"><summary>Why does the Google Address Validation Log not show entries I know exist?</summary><p>The log shows you only the entries for the kinds of record you may read yourself (section 4.5). Ask your administrator if you need to see more.</p>
+</details><details class="faq"><summary>I deleted a record. Why is its entry still in the log?</summary><p>The log keeps the record&#39;s key and address until the Retention Policy deletes the row (section 4.5). An administrator must switch the Retention Policy on; it starts switched off, and the planned retention is 2 years.</p>
+</details><h2>Cost and Google</h2>
+<details class="faq"><summary>Does it cost money?</summary><p>Each check is one request on your company&#39;s own Google Cloud project. Google&#39;s free allowance (5,000 requests a month, shared by all countries and users of the key) covers low volume, then it is about $17 per 1,000 (section 4.12). Check Google&#39;s billing report after your first tests to confirm. A billing account on India pricing gets 35,000 free requests instead.</p>
+</details><details class="faq"><summary>Do I need my own Google API key?</summary><p>Yes. The key belongs to your company&#39;s Google Cloud project, which needs billing turned on and the Address Validation API enabled. The extension does not supply a key. The Google Setup tab explains each step.</p>
+</details><details class="faq"><summary>Does Google need a payment method even if I stay in the free allowance?</summary><p>Yes. Google requires a billing account with a payment method even when you stay inside the free allowance.</p>
+</details><details class="faq"><summary>How do I stop unexpected spending?</summary><p>Set a daily quota cap on the Address Validation API in Google Cloud. A budget alert only warns you; a quota cap makes the API stop answering when it is reached (Google Setup, steps 6 and 7).</p>
+</details><details class="faq"><summary>What if the API key leaks?</summary><p>Rotate it in Google Cloud: the new key keeps the old key&#39;s restrictions, and both work during the transition. Paste the new key into Business Central, confirm checks work, then delete the previous key (Google Setup, &quot;Rotating the key&quot;).</p>
+</details><h2>Problems and messages</h2>
+<details class="faq"><summary>It says &quot;Address validation is not set up&quot;. What now?</summary><p>The service is switched off or the API key is missing. Nothing was sent. Tell your administrator (section 4.1).</p>
+</details><details class="faq"><summary>It says &quot;Google Maps rejected the API key&quot;. What now?</summary><p>The key was typed wrongly, deleted, or belongs to another project. The administrator checks or replaces the key and runs <strong>Test Connection</strong>.</p>
+</details><details class="faq"><summary>It says the Address Validation API or billing is not enabled. What now?</summary><p>The administrator enables the Address Validation API, or links a paid billing account, on the Google Cloud project that owns the key.</p>
+</details><details class="faq"><summary>It says &quot;The Google Maps request limit has been reached&quot;. What now?</summary><p>A quota or the daily cap set in Google Cloud was reached. All users share the one key. Wait and try again later; the administrator can review the cap.</p>
+</details><details class="faq"><summary>It says &quot;Google Maps is not responding&quot;. What now?</summary><p>Google had a server problem, took longer than <strong>Timeout (Seconds)</strong>, or could not be reached. Try again later. If it keeps happening, tell your administrator: the environment may not be allowed to make outside web calls, so <strong>Allow HttpClient Requests</strong> should be checked.</p>
+</details><details class="faq"><summary>It says &quot;Google Maps couldn&#39;t confirm this address&quot;. What now?</summary><p>Google answered but could not confirm the address to the building. Check the spelling and add the missing detail, such as a suite number or ZIP code, then try again.</p>
+</details><details class="faq"><summary>It says &quot;Enter the 2-letter state or province code&quot;. What now?</summary><p>In the US, Puerto Rico and Canada the State field must be a two-letter code such as <code>WA</code> or <code>ON</code>.</p>
+</details><details class="faq"><summary>It says the country isn&#39;t turned on. What now?</summary><p>The country is covered by Google but an administrator switched it off. Ask your administrator to turn it on in Google Address Validation Supported Countries (section 4.12).</p>
+</details><details class="faq"><summary>It says Google can&#39;t tell which country the record is in. What now?</summary><p>The record&#39;s country has no ISO Code. An administrator fills in the ISO Code of that country on the Countries/Regions page.</p>
+</details><details class="faq"><summary>The address was changed while the suggestion was open. What now?</summary><p>Nothing was updated. Run Validate Address again.</p>
+
+</details></section><section class="panel" id="panel-google-setup" role="tabpanel" hidden><h1>Google Setup</h1><p><strong>As of:</strong> October 17, 2026. Google&#39;s pages and prices were read on 2026-10-17 (most were last updated by Google on 2026-10-15). Console screens and prices change; where this guide says &quot;read on&quot;, the source is named so you can recheck it.
 <strong>Applies to:</strong> Google Address Validator 0.0.0.7 and later; the current build is 1.3.0.0. This guide covers only the Google side; installing the package is covered in the deployment guide in the repository.</p>
 <h2>What you need, in one line</h2>
 <p><strong>One value: a Google Maps Platform API key</strong> from a Google Cloud project that has <strong>billing turned on</strong> and the <strong>Address Validation API enabled</strong>. You paste that key into Business Central. Nothing else from Google goes into the extension.</p>
