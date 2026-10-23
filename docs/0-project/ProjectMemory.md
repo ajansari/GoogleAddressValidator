@@ -113,3 +113,5 @@ Framework updated to 5.8.2.0 on 2026-10-19 (ChangeLog FW-3). Pending: AJ Ansari'
 1.3.0.1 (2026-10-19, ChangeLog SC-7): default country asked in the wizard (no US preset), API key kept on a repeat wizard run, brief and description in app.json. Needs the sandbox retest (TC-02 changed).
 
 Help page lives in docs/ (ChangeLog SC-10); GitHub Pages must be set to main / /docs; release package is now 1.3.0.3.
+
+Framework updated 5.8.2.0 -> 5.9.5.0 (2026-10-22, AJ Ansari accepted; ChangeLog FW-5.9.5). Old copies in ocpfFramework/state/previous/.

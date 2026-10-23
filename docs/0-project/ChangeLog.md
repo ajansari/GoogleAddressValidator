@@ -621,3 +621,10 @@ Old → new object IDs:
 **Resolution:** Wrote `docs/4-prove/FAQ.md` (30 questions, from the User Guide, Google Setup guide and message table; nothing invented). `docs/build.py` adds an FAQ tab with collapsible questions and leaves User Guide section 6 out of the page (the Markdown keeps it). `docs/template.html` gained the `.faq` styles. Drafted by the Main model; no sub-agent.
 **Files affected:** docs/4-prove/FAQ.md, docs/build.py, docs/template.html, docs/index.html.
 **Updated:** TDD, FRD — no.
+
+## Issue FW-5.9.5 — Framework updated from 5.8.2.0 to 5.9.5.0 (AJ Ansari, 2026-10-22)
+**Problem:** The project's pinned runbook was 5.8.2.0; 5.9.5.0 was published.
+**Root cause:** Routine framework update, offered by the plugin's update check and accepted by AJ Ansari ("Update now").
+**Resolution:** Replaced `CLAUDE.md`, `ocpfFramework/RunbookChangelog.md`, the step files, the document templates, `ocpfFramework/scripts/` (AL tool scripts, notify, usage, dashboard renderer and both templates), and the Operations Guide. The Standards Guide stays at v1.13.1.0 (pin unchanged, file identical; `SNAPSHOT.json` refreshed). The four `.claude/agents/ocpf-*.md` bodies were rewritten from the plugin 5.9.5 copies with their `model:`/`effort:` lines kept (light haiku/medium, reasoning opus/high, generator sonnet/medium, reviewer sonnet/medium). `framework.json` set to 5.9.5.0 (plugin 5.9.5). Old copies are in `ocpfFramework/state/previous/*.5.8.2.0`. No files moved (layout already `ocpfFramework-1`); dashboard re-rendered. Per 5.9.5.0, a finished project now renders as *Completed*. 5.9.5.0 also adds the intake Box 4D (short description, long description, Help URL), which this project already answered in `app.json` and the help site. `ProjectDashboard*.html` stay in `.gitignore` per AJ Ansari's 2026-10-19 local-files decision, although the runbook says they are tracked.
+**Files affected:** CLAUDE.md, ocpfFramework/*, .claude/agents/ocpf-*.md.
+**Updated:** TDD — no; FRD — no.
